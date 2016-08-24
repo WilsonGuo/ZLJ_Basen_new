@@ -1,0 +1,6 @@
+---- g_mutex_id Matches (5 in 2 files) ----
+DeviceManager.c (d:\project\android\workspace\smarteair1102\jni):pthread_mutex_t g_mutex_id;
+PacketProc.c (d:\project\android\workspace\smarteair1102\jni):            //pthread_mutex_lock(&g_mutex_id);
+PacketProc.c (d:\project\android\workspace\smarteair1102\jni):            //pthread_mutex_unlock(&g_mutex_id);
+PacketProc.c (d:\project\android\workspace\smarteair1102\jni):                       //pthread_mutex_lock(&g_mutex_id);                       
+PacketProc.c (d:\project\android\workspace\smarteair1102\jni):                      // pthread_mutex_unlock(&g_mutex_id);

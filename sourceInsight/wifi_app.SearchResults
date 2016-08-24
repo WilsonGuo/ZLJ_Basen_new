@@ -1,0 +1,8 @@
+---- TimerPickerAlert Matches (7 in 4 files) ----
+CenterDeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):import com.example.smarteair.view.TimerPickerAlert;
+CenterDeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):				TimerPickerAlert.showAlert(CenterDeviceHomePageActivity.this, 0, 0, 0, null);
+DeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):import com.example.smarteair.view.TimerPickerAlert;
+DeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):				TimerPickerAlert.showAlert(DeviceHomePageActivity.this, 0, 0, 0, null);
+T1DeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):import com.example.smarteair.view.TimerPickerAlert;
+T1DeviceHomePageActivity.java (e:\workspace\smarteair\src\com\example\smarteair\activity):				TimerPickerAlert.showAlert(T1DeviceHomePageActivity.this, 0, 0, 0, null);
+TimerPickerAlert.java (e:\workspace\smarteair\src\com\example\smarteair\view):public class TimerPickerAlert

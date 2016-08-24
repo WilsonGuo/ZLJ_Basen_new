@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    android:orientation="vertical" 
+    android:id="@+id/eair_bg" 
+    android:background="@color/color_main_bg"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:weightSum="100"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+    <RelativeLayout 
+        android:id="@+id/title_layout" 
+        android:layout_width="fill_parent" 
+        android:paddingTop="4dip"
+        android:layout_weight="6"
+        android:layout_height="0dip">
+
+        <TextView 
+            android:textSize="20.0sp" 
+            android:textColor="@color/color_my_white" 
+            android:id="@+id/location_text" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_centerInParent="true" 
+            android:textStyle="bold"
+            android:text="@string/t2_name"  />
+    </RelativeLayout>
+
+  
+    
+					
+   <ScrollView 
+        android:scrollbars="none" 
+        android:fadingEdge="none" 
+        android:layout_width="fill_parent" 
+        android:layout_height="0dip" 
+        android:paddingTop="4dip"
+        android:fillViewport="true" 
+        android:layout_weight="81">
+        
+
+	
+		<LinearLayout 
+            android:orientation="vertical" 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="4dip"
+            android:gravity="center"
+            android:paddingBottom="8dip">
+
+		    
+			    <LinearLayout 
+	            android:id="@+id/goodnight_timer_info" 
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:paddingTop="4dip"
+	            android:paddingBottom="4dp"
+	            android:paddingLeft="8dp"
+	            android:paddingRight="8dp"
+	            android:gravity="center"
+	            android:background="@drawable/timer_info_bg"
+	            android:layout_marginTop="10dip"
+	            android:orientation="horizontal">
+	            
+		            <TextView 
+		                android:textSize="24.0sp" 
+		                android:clickable="false"
+		                android:textColor="@color/color_my_white" 
+		                android:id="@+id/goodnight_system_time" 
+		                android:text="@string/timer_left"
+		                android:layout_width="wrap_content" 
+		                android:layout_height="wrap_content"  />
+		            
+		            <LinearLayout 
+		            android:layout_width="wrap_content" 
+		            android:layout_height="wrap_content" 
+		            android:gravity="center_horizontal"
+		            android:layout_marginLeft="26dip"
+		            android:clickable="false"
+		            android:orientation="vertical">
+		            
+			            <TextView 
+			                android:textSize="13.0sp" 
+			                android:clickable="false"
+			                android:textColor="@color/color_my_white" 
+			                android:id="@+id/goodnight_timer_start" 
+			                android:text="@string/timer_start"
+							android:layout_width="wrap_content" 
+			                android:layout_height="wrap_content"  />
+			            
+			            <TextView 
+			                android:textSize="13.0sp" 
+			                android:clickable="false"
+			                android:textColor="@color/color_my_white" 
+			                android:id="@+id/goodnight_timer_stop" 
+			                android:text="@string/timer_stop"
+			                android:layout_width="wrap_content" 
+			                android:layout_height="wrap_content"  />
+		            
+		            </LinearLayout>
+	            
+	  			</LinearLayout>
+  
+    
+			<FrameLayout  
+	            android:layout_width="fill_parent" 
+	            android:layout_height="wrap_content"
+				android:id="@+id/control_icons"
+	            android:gravity="center"
+	            android:layout_marginTop="10dip"
+	            android:baselineAligned="false">
+
+			    <LinearLayout
+			        android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:weightSum="2">
+		  			<LinearLayout 
+						android:layout_width="0dip" 
+						android:layout_height="wrap_content"
+						android:gravity="right"
+		                android:orientation="vertical"
+		                android:paddingRight="@dimen/control_icons_padding_horizontal"
+		                android:layout_weight="1">
+		                <TextView 
+		                    android:textSize="14.0sp" 
+		                    android:textColor="#ffffffff" 
+		                    android:gravity="center_horizontal" 
+		                    android:id="@+id/btn_wind_in" 
+		                    android:layout_width="wrap_content" 
+		                    android:padding="4dip"
+		                    android:background="@drawable/bg_half_transparent"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/text_wind_in" 
+		                    android:drawableTop="@drawable/state_wind_in"  
+		                    android:layout_marginBottom="@dimen/control_icons_padding_vertical"/>
+		                <TextView android:textSize="14.0sp" 
+		                    android:textColor="#ffffffff" 
+		                    android:gravity="center_horizontal" 
+		                    android:id="@+id/btn_heat" 
+		                    android:background="@drawable/bg_half_transparent"
+		                    android:padding="4dip"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content" 
+		                    android:text="@string/text_heat" 
+		                    android:drawableTop="@drawable/state_heat"  
+		                    android:layout_marginTop="@dimen/control_icons_padding_vertical"/>
+		                
+		            </LinearLayout>
+		            
+					<LinearLayout 
+						android:layout_width="0dip" 
+						android:layout_height="wrap_content"
+		                android:orientation="vertical"
+		                android:gravity="left"
+		                android:paddingLeft="@dimen/control_icons_padding_horizontal"
+		                android:layout_weight="1"
+		                >
+		                
+					    <TextView android:textSize="14.0sp" 
+		                    android:textColor="#ffffffff" 
+		                    android:gravity="center_horizontal" 
+		                    android:padding="4dip"
+		                    android:background="@drawable/bg_half_transparent"
+		                    android:id="@+id/btn_wind_out" 
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content" 
+		                    android:text="@string/text_wind_out" 
+		                    android:drawableTop="@drawable/selector_wind_out"  
+		                    android:layout_marginBottom="@dimen/control_icons_padding_vertical"/>
+					    
+		                <TextView android:textSize="14.0sp" 
+		                    android:textColor="#ffffffff" 
+		                    android:gravity="center_horizontal" 
+		                    android:background="@drawable/bg_half_transparent"
+		                    android:padding="4dip"
+		                    android:id="@+id/btn_o1" 
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/text_o1" 
+		                    android:drawableTop="@drawable/selector_o1" 
+		                    android:layout_marginTop="@dimen/control_icons_padding_vertical"/>
+		            	</LinearLayout>
+	           		</LinearLayout>    
+	           
+				    			    
+			</FrameLayout>
+	
+	
+            <FrameLayout 
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content">
+				
+
+                <LinearLayout 
+                    android:orientation="vertical" 
+                    android:layout_gravity="left|bottom"
+                    android:gravity="bottom"
+                    android:id="@+id/filter_info_layout"
+                    android:layout_width="wrap_content" 
+                    android:layout_height="fill_parent" 
+                    android:layout_marginLeft="8.0dip">
+                    <TextView 
+                        android:textSize="13.0sp" 
+                        android:textColor="@color/color_my_white"        
+                        android:gravity="center"
+                        android:layout_width="70dip" 
+                    	android:layout_height="36dip"
+                    	android:background="@drawable/home_frame"
+                    	android:id="@+id/filter_info_content"
+                        android:text="@string/filter_info" />
+                </LinearLayout>
+				
+                <FrameLayout 
+                    android:layout_gravity="center_horizontal" 
+                    android:background="@drawable/circle" 
+                    android:layout_width="110.0dip" 
+                    android:layout_height="110.0dip" 
+                    android:layout_marginTop="6.0dip">
+                    <View 
+                        android:id="@+id/run_progress" 
+                        android:background="@drawable/point" 
+                        android:visibility="gone" 
+                        android:layout_width="fill_parent" 
+                        android:layout_height="fill_parent" />
+                    
+                    <LinearLayout 
+                        android:gravity="center" 
+                        android:layout_gravity="center" 
+                        android:orientation="vertical" 
+                        android:id="@+id/open_layout" 
+                        android:layout_width="fill_parent" 
+                        android:layout_height="fill_parent" 
+                        android:layout_margin="16.0dip">
+		                
+		                
+		                <FrameLayout
+		                    android:layout_width="fill_parent" 
+                            android:layout_height="wrap_content">
+		                
+	                        <TextView 
+	                            android:textSize="40.0sp" 
+	                            android:textColor="@color/color_my_white" 
+	                            android:id="@+id/eair_value" 
+	                            android:background="@drawable/mode_night_icon" 
+	                            android:layout_gravity="center_horizontal"
+	                            android:textStyle="bold"
+	                            android:layout_width="wrap_content" 
+	                            android:layout_height="wrap_content" />
+	                        <TextView 
+	                            android:textSize="11.0sp" 
+	                            android:layout_marginLeft="8dp"
+	                            android:textColor="#ffffffff" 
+	                            android:layout_width="wrap_content" 
+	                            android:layout_height="wrap_content" 
+	                            android:layout_gravity="left|bottom"
+	                            android:paddingBottom="12dp"
+	                            android:layout_marginRight="12dp"
+	                            android:id="@+id/eair_run_state"
+	                            android:text="@string/pm_good" />
+                        </FrameLayout>
+                        
+                        <TextView 
+                            android:textSize="10.0sp" 
+                            android:textColor="#ffffffff" 
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content" 
+                            android:layout_marginTop="2.0dip" 
+                            android:text="@string/air_state" />
+                        
+                    </LinearLayout>
+                    
+                    
+                    
+                </FrameLayout>
+				
+				<LinearLayout 
+                    android:orientation="vertical" 
+                    android:layout_gravity="right|bottom"
+                    android:gravity="bottom"
+                    android:layout_width="wrap_content" 
+                    android:layout_height="fill_parent" 
+                    android:layout_marginRight="8.0dip">
+                    <TextView 
+	                    android:textSize="13.0sp" 
+	                    android:textColor="#ffffffff" 
+	                    android:id="@+id/humi_set" 
+	                    android:gravity="center"
+	                    android:background="@drawable/home_frame" 
+	                    android:layout_width="70dip" 
+	                    android:layout_height="36dip" 
+	                    android:text="@string/humi_set_default" />
+                </LinearLayout>
+
+				
+            </FrameLayout>
+
+             
+         <LinearLayout
+	    	android:orientation="horizontal"  
+            android:id="@+id/goodnight_temperature_info" 
+            android:layout_width="250dip" 
+            android:layout_height="60dip" 
+            android:layout_marginTop="14dip"
+            android:background="@drawable/humi_temp_bg"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center_vertical"
+            android:baselineAligned="false"
+            android:weightSum="4">
+          
+	       <LinearLayout
+	    	android:orientation="vertical"  
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+	            
+	            <TextView 
+	                android:textSize="17.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:id="@+id/goodnight_humidity_indoor" 
+	                android:text="@string/default_humidity" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content" 
+	                android:gravity="center"/>
+	            <TextView 
+	                android:textSize="11.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:text="@string/inside_humidity" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content" 
+	                android:gravity="center"/>	            
+	      </LinearLayout>   
+	     
+	       <LinearLayout
+	    	android:orientation="vertical"  
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+	            
+	            <TextView 
+	                android:textSize="17.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:id="@+id/goodnight_humidity_outdoor"
+	                android:text="@string/default_humidity" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center"/>
+	            <TextView 
+	                android:textSize="11.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:text="@string/outside_humidity" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center"/>
+	      </LinearLayout>
+	      
+	       <LinearLayout
+	    	android:orientation="vertical"  
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+                 
+	            <TextView 
+	                android:textSize="17.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:id="@+id/goodnight_temperature_indoor" 
+	                android:text="@string/default_temperature" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center_vertical"
+	                />
+	            <TextView 
+	                android:textSize="11.0sp" 
+	                android:textColor="@color/color_goodnight_text_high"  
+	                android:text="@string/inside_temperature" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center_vertical"
+	                />
+	      </LinearLayout>
+	      
+	       <LinearLayout
+	    	android:orientation="vertical"  
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+	            <TextView 
+	                android:textSize="17.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:id="@+id/goodnight_temperature_outdoor" 
+	                android:text="@string/default_temperature" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center"/>
+	            <TextView 
+	                android:textSize="11.0sp" 
+	                android:textColor="@color/color_goodnight_text_high" 
+	                android:text="@string/outside_temperature" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content"  
+	                android:gravity="center"/>
+	      </LinearLayout>
+  		</LinearLayout> 
+        </LinearLayout>
+
+    </ScrollView>
+    
+    
+   <RelativeLayout
+       android:layout_width="fill_parent" 
+        android:layout_height="0dip"
+        android:layout_weight="13">
+        
+        
+    <FrameLayout 
+ 		android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+     
+		<ImageView 
+			android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/bottom_bg"  
+	    	android:scaleType="centerCrop"
+	    	android:contentDescription="@string/air"/>"
+	        
+	    <RelativeLayout 
+	        android:id="@+id/bottom_bar" 
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:gravity="center_vertical">
+	        
+	        <LinearLayout 
+	            android:gravity="center_vertical" 
+	            android:id="@+id/wind_layout" 
+	            android:orientation="horizontal"
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:layout_marginLeft="10.0dip" 
+	            android:layout_centerVertical="true">
+	            <View 
+	                android:id="@+id/wind_icon" 
+	                android:background="@drawable/good_fan" 
+	                android:layout_width="50.0dip" 
+	                android:layout_height="50.0dip" />
+	            <LinearLayout 
+	            android:gravity="center_vertical" 
+	            android:orientation="vertical"
+	            android:layout_width="wrap_content" 
+	            android:layout_height="fill_parent" 
+	            android:layout_marginLeft="6.0dip" >
+		            <TextView 
+		                android:textSize="14.0sp" 
+		                android:textColor="@color/color_good_text" 
+		                android:id="@+id/wind_in_textview" 
+		                android:layout_width="wrap_content" 
+		                android:layout_height="wrap_content" 
+		                android:text="@string/text_wind_in" />
+		            
+		            <TextView 
+		                android:textSize="14.0sp" 
+		                android:textColor="@color/color_good_text" 
+		                android:id="@+id/wind_out_textview" 
+		                android:layout_width="wrap_content" 
+		                android:layout_height="wrap_content" 
+		                android:text="@string/text_wind_out" />
+	            </LinearLayout>
+	        </LinearLayout>
+	        
+	        <Button 
+	            android:id="@+id/btn_close" 
+	            android:background="@drawable/good_close_selector" 
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:layout_centerInParent="true" />
+	        
+	        <LinearLayout 
+	            android:gravity="center_vertical" 
+	            android:id="@+id/timer_layout" 
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:layout_marginRight="10.0dip" 
+	            android:layout_alignParentRight="true" 
+	            android:layout_centerVertical="true">
+	            
+	            <FrameLayout 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content">
+	                <View 
+	                    android:id="@+id/timer_icon_bg" 
+	                    android:background="@drawable/good_timer" 
+	                    android:layout_width="50.0dip" 
+	                    android:layout_height="50.0dip" />
+	                <View 
+	                    android:id="@+id/timer_icon" 
+	                    android:background="@drawable/good_timer2" 
+	                    android:layout_width="50.0dip" 
+	                    android:layout_height="50.0dip" />
+	            </FrameLayout>
+	            
+	            <TextView 
+	                android:textSize="16.0sp" 
+	                android:textColor="@color/color_good_text" 
+	                android:id="@+id/run_time" 
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content" 
+	                android:text="@string/mode_manual" />
+	            
+	        </LinearLayout>
+	    </RelativeLayout>
+    </FrameLayout>
+   </RelativeLayout>       
+</LinearLayout>

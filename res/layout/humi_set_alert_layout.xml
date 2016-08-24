@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout 
+    android:layout_width="wrap_content"
+	android:layout_height="140dp"
+    android:background="@color/color_my_half_transparent"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+
+   		<TextView
+			android:id="@+id/verticalText"
+			android:layout_marginTop="4dip"
+			android:layout_gravity="center_horizontal"
+			android:textColor="@color/color_my_white"
+			android:textStyle="bold"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:text="@string/zero" />
+   
+		<com.example.smarteair.view.VerticalSeekBar
+			android:id="@+id/verticalSeekBar"
+			android:layout_width="wrap_content"
+			android:maxHeight="6dip"
+			android:layout_marginTop="4dip"
+			android:layout_gravity="center_horizontal"
+			android:layout_height="130dp" 
+			android:paddingBottom="10dip"
+			android:paddingTop="10dip"
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip"
+			android:progressDrawable="@drawable/seek_img" 
+           	android:thumb="@drawable/thumb_small"     
+		/>
+
+
+</LinearLayout>
