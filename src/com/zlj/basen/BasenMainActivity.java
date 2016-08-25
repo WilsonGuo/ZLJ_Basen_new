@@ -25,6 +25,7 @@ import com.example.smarteair.net.NetWorkManager;
 import com.example.smarteair.net.WifiAdmin;
 import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.ListOptionAlert;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zlj.basen.activity.main.DeviceInfoActivity;
 import com.zlj.basen.activity.sub.ScanDeviceActivity;
 import com.zlj.basen.activity.sub.SetActivity;
@@ -74,6 +75,15 @@ public class BasenMainActivity extends BaseActivity implements DeviceStatusChang
 
 		mEairController = EairControler.getInstance(this);
 		mNetworkManager = NetWorkManager.getInstance(BasenMainActivity.this);
+		
+		initBugly();
+	}
+	
+	/**
+	 * 初始化Buggly
+	 */
+	public void initBugly() {
+		CrashReport.initCrashReport(mApplication, "de2cb339f2", false);
 	}
 
 	protected void onPause() {
