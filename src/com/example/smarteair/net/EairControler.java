@@ -627,8 +627,8 @@ public class EairControler {
 			eairInfo.set_dingshi = false;
 		}
 
-		eairInfo.fuctionSetBit = getDataByIndex(STATE_DATA_INDEX_FUCTION_SET_BIT_H, stateData, 2);
-		eairInfo.fuctionBit = getDataByIndex(STATE_DATA_INDEX_FUCTION_BIT_H, stateData, 2);
+		eairInfo.fuctionSetBit = getDataByIndexForFilter(STATE_DATA_INDEX_FUCTION_SET_BIT_H, stateData, 2);
+		eairInfo.fuctionBit = getDataByIndexForFilter(STATE_DATA_INDEX_FUCTION_BIT_H, stateData, 2);
 
 		eairInfo.indoorTemp = stateData[STATE_DATA_INDEX_INDOOR_TEMP] & 0x7f;
 		if ((stateData[STATE_DATA_INDEX_INDOOR_TEMP] & 0x70) == 1) {// 负值
@@ -751,16 +751,16 @@ public class EairControler {
 
 		eairInfo.filterTime = getDataByIndexForFilter(STATE_DATA_INDEX_FILTER_TIME_H, stateData, 2) / 2;
 
-		eairInfo.pm25 = getDataByIndex(STATE_DATA_INDEX_PM25_H, stateData, 2);
+		eairInfo.pm25 = getDataByIndexForFilter(STATE_DATA_INDEX_PM25_H, stateData, 2);
 		
 
-		int tvoc = getDataByIndex(STATE_DATA_INDEX_TVOC_H, stateData, 2);
+		int tvoc = getDataByIndexForFilter(STATE_DATA_INDEX_TVOC_H, stateData, 2);
 		eairInfo.tvoc = (float) tvoc / 100.0f;
 
-		int cho2 = getDataByIndex(STATE_DATA_INDEX_HCOH_H, stateData, 2);
+		int cho2 = getDataByIndexForFilter(STATE_DATA_INDEX_HCOH_H, stateData, 2);
 		eairInfo.hcoh = (float) cho2 / 100.0f;
 
-		eairInfo.co2 = getDataByIndex(STATE_DATA_INDEX_CO2_H, stateData, 2);
+		eairInfo.co2 = getDataByIndexForFilter(STATE_DATA_INDEX_CO2_H, stateData, 2);
 
 		eairInfo.speed_XF = getDataByIndex(STATE_DATA_INDEX_SPEED_XF, stateData, 1);
 		eairInfo.speed_PF = getDataByIndex(STATE_DATA_INDEX_SPEED_PF, stateData, 1);

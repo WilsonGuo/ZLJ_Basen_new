@@ -74,7 +74,7 @@
             android:id="@+id/lever_content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -150,7 +150,49 @@
                     android:textColor="#3890ce"
                     android:textSize="16sp" />
             </LinearLayout>
+ <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="CO2"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/lever_CO2_value"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="10"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="ppm"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -319,7 +361,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/top_layout"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="4dp" >
 
         <ImageView
             android:layout_width="230dp"
@@ -429,7 +471,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mid_layout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
@@ -508,7 +550,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom_up_layout"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="2dp"
         android:gravity="center"
         android:orientation="horizontal" >
 
@@ -582,13 +624,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/hengshi_layout"
+            android:id="@+id/hengshi_mg_layout"
             android:layout_width="60dp"
             android:layout_height="80dp"
+            android:paddingRight="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_hengshi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -612,6 +655,7 @@
              android:id="@+id/lvwang_layout"
             android:layout_width="60dp"
             android:layout_height="80dp"
+            android:paddingTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 

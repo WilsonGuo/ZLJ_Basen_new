@@ -63,6 +63,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	ImageView lever_img;
 
 	TextView lever_pm25_value;
+	TextView lever_CO2_value;
 	TextView lever_TVOC_value;
 	TextView lever__CH4O_value;
 	TextView time_open;
@@ -391,6 +392,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		lever_img = (ImageView) this.findViewById(R.id.lever_img);
 
 		lever_pm25_value = (TextView) this.findViewById(R.id.lever_pm25_value);
+		lever_CO2_value= (TextView) this.findViewById(R.id.lever_CO2_value);
 		lever_TVOC_value = (TextView) this.findViewById(R.id.lever_TVOC_value);
 		lever__CH4O_value = (TextView) this.findViewById(R.id.lever__CH4O_value);
 		time_open = (TextView) this.findViewById(R.id.time_open);
@@ -409,7 +411,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		gongneng_layout = (LinearLayout) this.findViewById(R.id.gongneng_layout);
 		fengsu_layout = (LinearLayout) this.findViewById(R.id.fengsu_layout);
 		lvwang_layout = (LinearLayout) this.findViewById(R.id.lvwang_layout);
-		hengshi_main_layout = (LinearLayout) this.findViewById(R.id.hengshi_layout);
+		hengshi_main_layout = (LinearLayout) this.findViewById(R.id.hengshi_mg_layout);
 		btn_xinfeng = (ImageButton) this.findViewById(R.id.btn_xinfeng);
 		btn_guanji = (ImageButton) this.findViewById(R.id.btn_guanji);
 		btn_paifeng = (ImageButton) this.findViewById(R.id.btn_paifeng);
@@ -777,7 +779,13 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				lever__CH4O_value.setText("--");
 			}
 		}
-
+		if (lever_CO2_value != null) {
+			lever_CO2_value.setText(String.format("%d", mEairInfo.co2));
+			if (mEairInfo.co2 == 65535) {
+				lever_CO2_value.setText("--");
+			}
+		}
+		
 		if (lever_TVOC_value != null) {
 			DecimalFormat df = new DecimalFormat("0.00");
 			String newff = df.format(mEairInfo.tvoc);
