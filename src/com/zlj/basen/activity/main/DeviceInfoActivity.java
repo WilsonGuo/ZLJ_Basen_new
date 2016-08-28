@@ -124,9 +124,14 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		wind_out_value = (TextView) view.findViewById(R.id.wind_out_value);
 		wind_out_value.setText("0");
 
+		
 		progress_wind_out = (SeekBar) view.findViewById(R.id.progress_wind_out);
 		progress_wind_in = (SeekBar) view.findViewById(R.id.progress_wind_in);
-
+		progress_wind_in.setProgress(mEairInfo.speed_XF);
+		progress_wind_out.setProgress(mEairInfo.speed_PF);
+		
+		wind_out_value.setText("" + mEairInfo.speed_PF);
+		wind_in_value.setText("" +mEairInfo.speed_XF);
 		progress_wind_out.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
@@ -498,12 +503,24 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			}
 		});
 		mEairInfo = EairApplaction.mControlDevice.getEairInfo();
+		
+		titleView=(TextView) this.findViewById(R.id.title_txt);
+		if (mEairInfo.deviceType == EairControler.TYPE_T2) {
+			titleView.setText(""+context.getResources().getString(R.string.t2_name));
+		} else if (mEairInfo.deviceType == EairControler.TYPE_T1) {
+			titleView.setText(""+context.getResources().getString(R.string.t1_name));
 
+		} else if (mEairInfo.deviceType == EairControler.TYPE_CENTER) {
+			titleView.setText(""+context.getResources().getString(R.string.center_name));
+
+		}
 		mEairController = EairControler.getInstance(this);
 		mNetworkManager = NetWorkManager.getInstance(this);
 		mNetworkManager.setDeviceStatusChangeListener(this);
 	}
-
+  
+	
+	TextView titleView;
 	protected void onResume() {
 		super.onResume();
 		initEairView();

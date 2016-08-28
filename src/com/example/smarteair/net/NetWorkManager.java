@@ -210,14 +210,14 @@ public class NetWorkManager {
 	private static void SendMsgToUi(int msgType, int DevId, int len, byte[] buff) {
 		if (mainHandler != null) {
 			Message msg = mainHandler.obtainMessage(msgType, DevId, len, buff);
-			mainHandler.sendMessage(msg); // ������Ϣ
+			mainHandler.sendMessage(msg); 
 		}
 	}
 
 	private static void SendMsgToSub(int msgType, int DevId, int len, byte[] buff) {
 		if (subHandler != null) {
 			Message msg = subHandler.obtainMessage(msgType, DevId, len, buff);
-			subHandler.sendMessage(msg); // ������Ϣ
+			subHandler.sendMessage(msg); 
 		}
 	}
 
@@ -431,9 +431,9 @@ public class NetWorkManager {
                         Log.e("TAG", ">>>>>>>>>>>>>>>>>>>strPassWord="+strPassWord);
 						int dev_sn = JniApConfig(ssid, password, add_wifi_flg);
 
-						mWifiAdmin.closeWifi();
-						mWifiAdmin.removewifi("WIFI-CFG");
-						mWifiAdmin.openWifi();
+//						mWifiAdmin.closeWifi();
+//						mWifiAdmin.removewifi("WIFI-CFG");
+//						mWifiAdmin.openWifi();
 
 						if ((add_wifi_flg != 0) && (dev_sn != 0)) {
 							int wifi_sn;

@@ -157,6 +157,7 @@ public class EairControler {
 	public static int BIT_SET_BIT_TVOC = 9;
 	public static int BIT_SET_BIT_HCHO = 10;
 	public static int BIT_SET_BIT_DINGSHI = 11;
+	public static int BIT_SET_BIT_NEIXUNHUAN = 12;
 
 	private final int CMD_A2M_QUERY_STATE = 0x00;
 	private final int CMD_A2M_SET_WORK_MODE = 0x01;

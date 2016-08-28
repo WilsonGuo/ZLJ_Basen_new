@@ -71,7 +71,6 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:max="60"
-                        
                         android:progressDrawable="@drawable/seekbar_define_style"
                         android:thumb="@drawable/seekbar_thumb" />
                 </LinearLayout>
