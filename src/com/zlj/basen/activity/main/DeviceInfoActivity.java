@@ -405,16 +405,11 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	TextView funcName;
 	LinearLayout heat_layout;
 	LinearLayout shadu_layout;
-	LinearLayout sleep_layout;
 	LinearLayout fulizi_Layuot;
 	ImageView basen_mode_heat_view;
 	ImageView basen_mode_shadu_view;
-	ImageView basen_mode_sleep_view;
 	ImageView basen_mode_fulizi_view;
-	TextView txt_heat;
-	TextView txt_shajun;
-	TextView txt_sleep;
-	TextView txt_fulizi;
+	
 
 	public View addFuncView() {
 		View view = inflater.inflate(R.layout.basen_function_layout, null);
@@ -424,16 +419,10 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		funcName = (TextView) view.findViewById(R.id.func_name);
 		heat_layout = (LinearLayout) view.findViewById(R.id.heat_layout);
 		shadu_layout = (LinearLayout) view.findViewById(R.id.shajun_layout);
-		sleep_layout = (LinearLayout) view.findViewById(R.id.sleep_layout);
 		fulizi_Layuot = (LinearLayout) view.findViewById(R.id.fulizi_layout);
 		basen_mode_heat_view = (ImageView) view.findViewById(R.id.basen_mode_heat_view);
 		basen_mode_shadu_view = (ImageView) view.findViewById(R.id.basen_mode_shadu_view);
-		basen_mode_sleep_view = (ImageView) view.findViewById(R.id.basen_mode_sleep_view);
 		basen_mode_fulizi_view = (ImageView) view.findViewById(R.id.basen_mode_fulizi_view);
-		txt_heat = (TextView) view.findViewById(R.id.txt_heat);
-		txt_shajun = (TextView) view.findViewById(R.id.txt_shajun);
-		txt_sleep = (TextView) view.findViewById(R.id.txt_sleep);
-		txt_fulizi = (TextView) view.findViewById(R.id.txt_fulizi);
 
 		initEairView();
 
@@ -454,14 +443,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 
 			}
 		});
-		sleep_layout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				funcName.setText("睡眠");
-				mEairController.airSetMode(EairControler.MODE_SLEEP, mEairInfo.sn);
-
-			}
-		});
+	
 		fulizi_Layuot.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -476,16 +458,13 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	TextView modeName;
 	LinearLayout hengshi_layout;
 	LinearLayout auto_layout;
-	LinearLayout neixunhuan_layout;
+	LinearLayout sleep_layout;
 	LinearLayout manLayuot;
 	ImageView basen_mode_man_view;
 	ImageView basen_mode_hengshi_view;
 	ImageView basen_mode_auto_view;
-	ImageView basen_mode_neixunahuan_view;
-	TextView txt_man;
-	TextView txt_hengshi;
-	TextView txt_auto;
-	TextView txt_neixunhuan;
+	ImageView basen_mode_sleep_view;
+	
 
 	public View addModeView() {
 		View view = inflater.inflate(R.layout.basen_mode_layout, null);
@@ -494,17 +473,14 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		modeName = (TextView) view.findViewById(R.id.mode_name);
 		hengshi_layout = (LinearLayout) view.findViewById(R.id.hengshi_layout);
 		auto_layout = (LinearLayout) view.findViewById(R.id.auto_layout);
-		neixunhuan_layout = (LinearLayout) view.findViewById(R.id.neixunhuan_layout);
+		sleep_layout = (LinearLayout) view.findViewById(R.id.sleep_layout);
 		manLayuot = (LinearLayout) view.findViewById(R.id.man_layout);
 		basen_mode_man_view = (ImageView) view.findViewById(R.id.basen_mode_man_view);
 		basen_mode_hengshi_view = (ImageView) view.findViewById(R.id.basen_mode_hengshi_view);
 		basen_mode_auto_view = (ImageView) view.findViewById(R.id.basen_mode_auto_view);
-		basen_mode_neixunahuan_view = (ImageView) view.findViewById(R.id.basen_mode_neixunahuan_view);
-		txt_man = (TextView) view.findViewById(R.id.txt_man);
-		txt_hengshi = (TextView) view.findViewById(R.id.txt_hengshi);
-		txt_auto = (TextView) view.findViewById(R.id.txt_auto);
-		txt_neixunhuan = (TextView) view.findViewById(R.id.txt_neixunhuan);
-
+		basen_mode_sleep_view = (ImageView) view.findViewById(R.id.basen_mode_sleep_view);
+	
+		
 		initEairView();
 
 		manLayuot.setOnClickListener(new OnClickListener() {
@@ -556,11 +532,11 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 
 			}
 		});
-		neixunhuan_layout.setOnClickListener(new OnClickListener() {
+		sleep_layout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				modeName.setText("内循环模式");
-				mEairController.airSetMode(EairControler.MODE_NEIXUNHUAN, mEairInfo.sn);
+				modeName.setText("睡眠模式");
+				mEairController.airSetMode(EairControler.MODE_SLEEP, mEairInfo.sn);
 
 			}
 		});
@@ -714,29 +690,20 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		// mEairRunStateText.setText(R.string.air_bad);
 		// }
 		//
-
 		if (funcName != null) {
 			if (mEairInfo.uv) {
-				txt_shajun.setTextColor(Color.argb(255, 56, 144, 206));
 				basen_mode_shadu_view.setImageResource(R.drawable.basen_func_shadu_elected);
-
 			} else {
-				txt_shajun.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_shadu_view.setImageResource(R.drawable.basen_func_shadu);
-
 			}
 			if (mEairInfo.o1) {
-				txt_fulizi.setTextColor(Color.argb(255, 56, 144, 206));
 				basen_mode_fulizi_view.setImageResource(R.drawable.basen_func_fulizi_selected);
 			} else {
-				txt_fulizi.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_fulizi_view.setImageResource(R.drawable.basen_func_fulizi);
 			}
 			if (mEairInfo.heat) {
-				txt_heat.setTextColor(Color.argb(255, 56, 144, 206));
 				basen_mode_heat_view.setImageResource(R.drawable.basen_func_heat_selected);
 			} else {
-				txt_heat.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_heat_view.setImageResource(R.drawable.basen_func_heat);
 			}
 
@@ -744,49 +711,29 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		if (modeName != null) {
 			if (mEairInfo.workMode == EairControler.MODE_MANUAL) {
 				modeName.setText("手动模式");
-				basen_mode_man_view.setImageResource(R.drawable.basen_mode_man);
-				txt_man.setTextColor(Color.argb(255, 56, 144, 206));
-
+				basen_mode_man_view.setImageResource(R.drawable.basen_mode_man_selected);
 				basen_mode_auto_view.setImageResource(R.drawable.basen_mode_auto);
-				txt_auto.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_hengshi_view.setImageResource(R.drawable.basen_mode_hengshi);
-				txt_hengshi.setTextColor(Color.argb(255, 153, 153, 153));
-				basen_mode_neixunahuan_view.setImageResource(R.drawable.basen_mode_neixunhuan);
-				txt_neixunhuan.setTextColor(Color.argb(255, 153, 153, 153));
+				basen_mode_sleep_view.setImageResource(R.drawable.basen_mode_sleep);
 
 			} else if (mEairInfo.workMode == EairControler.MODE_SENSOR) {
 				modeName.setText("智能模式");
 				basen_mode_auto_view.setImageResource(R.drawable.basen_mode_auto_selected);
-				txt_auto.setTextColor(Color.argb(255, 56, 144, 206));
-
 				basen_mode_man_view.setImageResource(R.drawable.basen_mode_man);
-				txt_man.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_hengshi_view.setImageResource(R.drawable.basen_mode_hengshi);
-				txt_hengshi.setTextColor(Color.argb(255, 153, 153, 153));
-				basen_mode_neixunahuan_view.setImageResource(R.drawable.basen_mode_neixunhuan);
-				txt_neixunhuan.setTextColor(Color.argb(255, 153, 153, 153));
+				basen_mode_sleep_view.setImageResource(R.drawable.basen_mode_sleep);
 			} else if (mEairInfo.workMode == EairControler.MODE_HENGSHI) {
 				modeName.setText("恒湿模式");
 				basen_mode_hengshi_view.setImageResource(R.drawable.basen_mode_hengshi_selected);
-				txt_hengshi.setTextColor(Color.argb(255, 56, 144, 206));
-
 				basen_mode_auto_view.setImageResource(R.drawable.basen_mode_auto);
-				txt_auto.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_man_view.setImageResource(R.drawable.basen_mode_man);
-				txt_man.setTextColor(Color.argb(255, 153, 153, 153));
-				basen_mode_neixunahuan_view.setImageResource(R.drawable.basen_mode_neixunhuan);
-				txt_neixunhuan.setTextColor(Color.argb(255, 153, 153, 153));
-			} else if (mEairInfo.workMode == EairControler.MODE_NEIXUNHUAN) {
-				modeName.setText("内循环模式");
-				basen_mode_neixunahuan_view.setImageResource(R.drawable.basen_mode_neixunhuan_selected);
-				txt_neixunhuan.setTextColor(Color.argb(255, 56, 144, 206));
-
+				basen_mode_sleep_view.setImageResource(R.drawable.basen_mode_sleep);
+			} else if (mEairInfo.workMode == EairControler.MODE_SLEEP) {
+				modeName.setText("睡眠模式");
+				basen_mode_sleep_view.setImageResource(R.drawable.basen_mode_sleep_selected);
 				basen_mode_man_view.setImageResource(R.drawable.basen_mode_man);
-				txt_man.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_auto_view.setImageResource(R.drawable.basen_mode_auto);
-				txt_auto.setTextColor(Color.argb(255, 153, 153, 153));
 				basen_mode_hengshi_view.setImageResource(R.drawable.basen_mode_hengshi);
-				txt_hengshi.setTextColor(Color.argb(255, 153, 153, 153));
 
 			}
 		}

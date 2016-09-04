@@ -35,8 +35,7 @@
 
             <LinearLayout
                 android:layout_width="@dimen/picker_bg_width"
-                android:layout_height="@dimen/picker_bg_height"
-                android:background="@drawable/kuang_bg"
+                android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
                 <TextView
@@ -44,7 +43,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:paddingLeft="10dp"
                     android:text="@string/label_start"
                     android:textColor="#cccccc"
                     android:textSize="20sp" />
@@ -73,27 +71,58 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/basen_time_picker_bg_long" />
 
+                    <ImageView
+                        android:id="@+id/hour_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_up" />
+
+                    <ImageView
+                        android:id="@+id/mins_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/hour_up"
+                        android:src="@drawable/arrow_up" />
+
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/hour_up"
                         android:background="@color/color_my_transparent" />
 
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/mins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/mins_up"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@id/hour"
                         android:background="@color/color_my_transparent" />
+
+                    <ImageView
+                        android:id="@+id/hour_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hour"
+                        android:src="@drawable/arrow_down" />
+
+                    <ImageView
+                        android:id="@+id/mins_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hour"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/hour_down"
+                        android:src="@drawable/arrow_down" />
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/picker_bg_width"
-                android:layout_height="@dimen/picker_bg_height"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/kuang_bg"
                 android:orientation="vertical" >
 
                 <TextView
@@ -101,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:paddingRight="10dp"
                     android:text="@string/label_end"
                     android:textColor="#cccccc"
                     android:textSize="20sp" />
@@ -130,10 +158,25 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/basen_time_picker_bg_long" />
 
+                    <ImageView
+                        android:id="@+id/end_hour_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_up" />
+
+                    <ImageView
+                        android:id="@+id/end_mins_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/end_hour_up"
+                        android:src="@drawable/arrow_up" />
+
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/end_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/end_hour_up"
                         android:background="@color/color_my_transparent"
                         android:textColor="#cccccc" />
 
@@ -143,8 +186,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@id/end_hour"
+                         android:layout_below="@+id/end_mins_up"
                         android:background="@color/color_my_transparent"
                         android:textColor="#cccccc" />
+
+                    <ImageView
+                        android:id="@+id/end_hour_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/end_hour"
+                        android:src="@drawable/arrow_down" />
+
+                    <ImageView
+                        android:id="@+id/end_mins_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/end_hour"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/end_hour_down"
+                        android:src="@drawable/arrow_down" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
@@ -164,8 +224,10 @@
             android:layout_width="@dimen/confrim_btn_width"
             android:layout_height="wrap_content"
             android:background="@drawable/basen_timer_ok_bg"
+            android:padding="5dp"
             android:text="@string/cancel"
-            android:textColor="#3890ce" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/confirm_btn_abc"
@@ -173,8 +235,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:background="@drawable/basen_timer_ok_bg"
+            android:padding="5dp"
             android:text="@string/yes"
-            android:textColor="#3890ce" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>
