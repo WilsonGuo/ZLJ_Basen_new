@@ -65,6 +65,7 @@ public class EairControler {
 
 	// ********************************Basen***************************************
 	private static int STATE_DATA_INDEX_DEVICE_TYPE = 2;// 8
+	private static int STATE_DATA_INDEX_LOGO_TYPE = 5;// 8
 
 	private static int STATE_DATA_INDEX_FUCTION_SET_BIT_H = 6;// 8
 	private static int STATE_DATA_INDEX_FUCTION_SET_BIT_L = 7;// 8
@@ -540,19 +541,23 @@ public class EairControler {
 			String hv = Integer.toHexString(v);
 			Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stateData:" + i + "=" + hv);
 		}
+		eairInfo.logoIndex=stateData[STATE_DATA_INDEX_LOGO_TYPE];
+		Log.e("TAG", "***************************************logoIndex:" + eairInfo.logoIndex);
 
+		
+		
 		eairInfo.sn = sn;
 		byte setBit_H = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_H];
 		byte setBit_L = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_L];
 		String stringH = byteToBit(setBit_H);
 		String stringL = byteToBit(setBit_L);
-		Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
+		//Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
 
 		byte bit_H = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_H];
 		byte bit_L = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_L];
 		String striH = byteToBit(bit_H);
 		String striL = byteToBit(bit_L);
-		Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
+		//Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
 
 		byte[] setBitsH = getBooleanArray(setBit_H);
 		byte[] setBitsL = getBooleanArray(setBit_L);

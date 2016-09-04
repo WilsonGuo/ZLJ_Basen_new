@@ -12,6 +12,8 @@ import com.example.smarteair.view.OnSingleClickListener;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,6 @@ public class DeviceAdapter extends BaseAdapter
     class ViewHolder
     {
 
-//        TextView deviceEair;
         ImageView deviceIcon;
         TextView deviceName;
         TextView deviceState;
@@ -108,19 +109,31 @@ public class DeviceAdapter extends BaseAdapter
 			if(NetWorkManager.getInstance(mContext).JniGetDeviceLinkStatus(md.terminalId) >  0)
 			{
 				viewholder.deviceState.setText(mContext.getResources().getString(R.string.device_online));
+				viewholder.deviceState.setTextColor(Color.BLACK);
+				viewholder.deviceName.setTextColor(Color.BLACK);
+				viewholder.deviceIcon.setImageResource(R.drawable.device_online);
 			}
 			else
 			{
 				viewholder.deviceState.setText(mContext.getResources().getString(R.string.device_offline));
+				viewholder.deviceState.setTextColor(Color.argb(255, 193, 194, 195));
+				viewholder.deviceName.setTextColor(Color.argb(255, 193, 194, 195));
+				viewholder.qrInfo.setTextColor(Color.argb(255, 193, 194, 195));
+				viewholder.deviceIcon.setImageResource(R.drawable.device_offline);
 			}
 		}
 		else
 		{
 			viewholder.deviceState.setText(mContext.getResources().getString(R.string.device_offline));
+			viewholder.deviceState.setTextColor(Color.argb(255, 193, 194, 195));
+			viewholder.deviceName.setTextColor(Color.argb(255, 193, 194, 195));
+			viewholder.qrInfo.setTextColor(Color.argb(255, 193, 194, 195));
+
+			viewholder.deviceIcon.setImageResource(R.drawable.device_offline);
 		}
 
 		 
-        viewholder.deviceIcon.setImageResource(R.drawable.device_online);
+        
         viewholder.qrInfo.setText("ID:"+Integer.toString(getItem(position).terminalId & 0x7fffffff));
 //        viewholder.deviceEair.setText("");
 

@@ -67,7 +67,7 @@ public class EairInfo implements Serializable
     public int timerStartHour_Sun;    
     public int timerEndMin_Sun;
     public int timerEndHour_Sun;
-    
+    public int logoIndex;
     
     public int hengshidu;
     

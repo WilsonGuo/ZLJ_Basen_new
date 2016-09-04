@@ -882,14 +882,24 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				// mEairInfo.windOutLevel);
 				// mWindOutTextView.setText(s);
 			}
+			
+			
 		}
-		//
-		// if ((!mEairInfo.windIn) && (!mEairInfo.windOut)) {
-		// mWindIconView.clearAnimation();
-		// } else {
-		// mWindIconView.startAnimation(mWindAnimation);
-		// }
-		//
+		if (mEairInfo.windInLevel==0) {
+			btn_fengliang.clearAnimation();
+		}else{
+			if(btn_fengliang.getAnimation()!=null){
+				btn_fengliang.clearAnimation();
+			}
+			 btn_fengliang.startAnimation(operatingAnim);
+		}
+		
+//		 if ((!mEairInfo.windIn) && (!mEairInfo.windOut)) {
+//			 btn_fengliang.clearAnimation();
+//		 } else {
+//			 btn_fengliang.startAnimation(operatingAnim);
+//		 }
+		
 		// mWindInTextView = (TextView) findViewById(R.id.wind_in_textview);
 		// mWindOutTextView = (TextView) findViewById(R.id.wind_out_textview);
 
