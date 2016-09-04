@@ -4,8 +4,8 @@ package com.zlj.basen.activity.sub;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.smarteair.EairApplaction;
 import com.example.basen.R;
+import com.example.smarteair.EairApplaction;
 import com.example.smarteair.adapter.SelectAdapter;
 import com.example.smarteair.data.AddDeviceCallBack;
 import com.example.smarteair.data.DataInfo;
@@ -56,7 +56,104 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 	private ScanDevice mProcDevice;
 	private EairControler mEairController;
 	private boolean mLastOneAdd;
+	ImageButton backBtn;
+	ImageButton showNewBtn;
+	ImageButton showAllBtn;
+	ImageButton addToListBtn;
+	protected void onCreate(Bundle bundle) {
+		super.onCreate(bundle);
+		setContentView(R.layout.scandevice_layout);
+		setTitle(R.string.search_device);
 
+		findView();
+		initView();
+		backBtn = (ImageButton) this.findViewById(R.id.backBtn);
+		backBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ScanDeviceActivity.this.finish();
+			}
+		});
+		
+		showNewBtn=(ImageButton) this.findViewById(R.id.show_new_btn);
+		showNewBtn.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				if (event.getAction()==MotionEvent.ACTION_DOWN) {
+					
+				}else if(event.getAction()==MotionEvent.ACTION_UP){
+					showNewBtn.setImageResource(R.drawable.search_show_new_device_selected);
+					showAllBtn.setImageResource(R.drawable.search_show_all);
+					showNew=true;
+					refreshView();
+				}
+				
+				return false;
+			}
+		});
+		
+		showAllBtn=(ImageButton) this.findViewById(R.id.show_all_btn);
+		showAllBtn.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				if (event.getAction()==MotionEvent.ACTION_DOWN) {
+					
+				}else if(event.getAction()==MotionEvent.ACTION_UP){
+					
+					showNewBtn.setImageResource(R.drawable.search_show_new_device);
+					showAllBtn.setImageResource(R.drawable.search_show_all_selected);
+					showNew=false;
+					refreshView();
+				}
+				
+				return false;
+			}
+		});
+		
+	
+		mGotDevice = new ArrayList<ScanDevice>();
+		mQueryDevice = new ArrayList<ScanDevice>();
+		mCheckedDevice = new ArrayList<ScanDevice>();
+		mNetworkManager = NetWorkManager.getInstance(this);
+		// mNetworkManager.JniEntryScanMode();
+		mEairController = EairControler.getInstance(this);
+		mNetworkManager.JniEntryScanMode();
+
+		mNetworkManager.setScanDeviceListener(new ScanDeviceListener() {
+
+			public void deviceInfoCallBack(int id) {
+				ScanDevice info = new ScanDevice();
+				info.id = id;
+				info.mac = Integer.toString(id & 0x7fffffff);
+				info.deviceName = info.mac;
+               Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>info.deviceName="+info.deviceName);
+				if (info != null && info.id != 0) {
+					if (!isNewID(info.id)) {
+						mGotDevice.add(info);
+						refreshView();
+					}
+				}
+			}
+		});
+
+		mNetworkManager.setAddDeviceCallBack(this);
+
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// mNetworkManager.JniExitScanMode();
+	}
+
+	protected void onResume() {
+		super.onResume();
+		// mNetworkManager.JniEntryScanMode();
+		mNetworkManager.setDeviceStatusChangeListener(this);
+	}
 	public ScanDeviceActivity() {
 		mInConfig = false;
 	}
@@ -162,104 +259,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 		mNetworkManager.JniExitScanMode();
 	}
 
-	ImageButton backBtn;
-	ImageButton showNewBtn;
-	ImageButton showAllBtn;
-	ImageButton addToListBtn;
-	protected void onCreate(Bundle bundle) {
-		super.onCreate(bundle);
-		setContentView(R.layout.scandevice_layout);
-		setTitle(R.string.search_device);
-
-		findView();
-		initView();
-		backBtn = (ImageButton) this.findViewById(R.id.backBtn);
-		backBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				ScanDeviceActivity.this.finish();
-			}
-		});
-		
-		showNewBtn=(ImageButton) this.findViewById(R.id.show_new_btn);
-		showNewBtn.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				if (event.getAction()==MotionEvent.ACTION_DOWN) {
-					
-				}else if(event.getAction()==MotionEvent.ACTION_UP){
-					showNewBtn.setImageResource(R.drawable.search_show_new_device_selected);
-					showAllBtn.setImageResource(R.drawable.search_show_all);
-					showNew=true;
-					refreshView();
-				}
-				
-				return false;
-			}
-		});
-		
-		showAllBtn=(ImageButton) this.findViewById(R.id.show_all_btn);
-		showAllBtn.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				if (event.getAction()==MotionEvent.ACTION_DOWN) {
-					
-				}else if(event.getAction()==MotionEvent.ACTION_UP){
-					
-					showNewBtn.setImageResource(R.drawable.search_show_new_device);
-					showAllBtn.setImageResource(R.drawable.search_show_all_selected);
-					showNew=false;
-					refreshView();
-				}
-				
-				return false;
-			}
-		});
-		
 	
-		mGotDevice = new ArrayList<ScanDevice>();
-		mQueryDevice = new ArrayList<ScanDevice>();
-		mCheckedDevice = new ArrayList<ScanDevice>();
-		mNetworkManager = NetWorkManager.getInstance(this);
-		// mNetworkManager.JniEntryScanMode();
-		mEairController = EairControler.getInstance(this);
-		mNetworkManager.JniEntryScanMode();
-
-		mNetworkManager.setScanDeviceListener(new ScanDeviceListener() {
-
-			public void deviceInfoCallBack(int id) {
-				ScanDevice info = new ScanDevice();
-				info.id = id;
-				info.mac = Integer.toString(id & 0x7fffffff);
-				info.deviceName = info.mac;
-               Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>info.deviceName="+info.deviceName);
-				if (info != null && info.id != 0) {
-					if (!isNewID(info.id)) {
-						mGotDevice.add(info);
-						refreshView();
-					}
-				}
-			}
-		});
-
-		mNetworkManager.setAddDeviceCallBack(this);
-
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		// mNetworkManager.JniExitScanMode();
-	}
-
-	protected void onResume() {
-		super.onResume();
-		// mNetworkManager.JniEntryScanMode();
-		mNetworkManager.setDeviceStatusChangeListener(this);
-	}
     boolean showNew=true;
 	private void refreshView() {
 

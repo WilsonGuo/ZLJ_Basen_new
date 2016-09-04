@@ -5,34 +5,78 @@
     android:background="#ffffffff"
     tools:context="com.zlj.basen.MainActivity" >
 
+    <!-- Basen -->
+
     <LinearLayout
+        android:id="@+id/basen_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/shu" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/basen_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="大自然清新空气"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Nomal -->
+
+    <LinearLayout
+        android:id="@+id/nomal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="120dp"
+        android:visibility="invisible"
         android:orientation="vertical" >
-        
-        <ImageView 
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/launcher_icon_basen"
-            android:layout_gravity="center_horizontal"
-            
-            />
-        
-         <ImageView 
-            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="清新空气 健康生活"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/launcher_mid"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            
-            />
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="云智能APP"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/nomal_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/bg_bottom" />
+        android:src="@drawable/nomal_bottom_img"
+        android:visibility="invisible" />
 
 </RelativeLayout>

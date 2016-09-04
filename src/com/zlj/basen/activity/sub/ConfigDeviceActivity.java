@@ -49,6 +49,32 @@ public class ConfigDeviceActivity extends BaseActivity {
 	private WifiAdmin wifiAdmin;
 
 	NetWorkManager mNetworkManager;
+	ImageButton backBtn;
+
+	protected void onCreate(Bundle bundle) {
+		super.onCreate(bundle);
+		setContentView(R.layout.config_device_layout);
+		setTitle(R.string.add_device);
+		mWifiSharedPreferences = getSharedPreferences("shared_wifi", 0);
+		findView();
+		initView();
+		backBtn = (ImageButton) this.findViewById(R.id.backBtn);
+		backBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ConfigDeviceActivity.this.finish();
+			}
+		});
+		mNetworkManager = NetWorkManager.getInstance(this);
+
+	}
+
+	protected void onResume() {
+		super.onResume();
+		checkWifi();
+
+	}
 
 	public ConfigDeviceActivity() {
 		mInConfig = false;
@@ -100,7 +126,7 @@ public class ConfigDeviceActivity extends BaseActivity {
 			public void onClick(View v) {
 
 				String s = Context.WIFI_SERVICE;
-			 	//mNetworkManager.JniExitScanMode();
+				// mNetworkManager.JniExitScanMode();
 				if (!mInConfig) {
 					mInConfig = true;
 					mConfigingLayout.setVisibility(View.VISIBLE);
@@ -182,35 +208,6 @@ public class ConfigDeviceActivity extends BaseActivity {
 				mPassWord.requestFocus();
 			}
 		}
-
-	}
-	ImageButton backBtn;
-	protected void onCreate(Bundle bundle) {
-		super.onCreate(bundle);
-		setContentView(R.layout.config_device_layout);
-		setTitle(R.string.add_device);
-		// mBroadLinkConfig = new BroadLinkConfig(this);
-		mWifiSharedPreferences = getSharedPreferences("shared_wifi", 0);
-		findView();
-		initView();
-		backBtn=(ImageButton) this.findViewById(R.id.backBtn);
-		backBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				ConfigDeviceActivity.this.finish();
-			}
-		});
-		mNetworkManager = NetWorkManager.getInstance(this);
-		// mNetworkManager.ChgFindMode(false);
-
-		// mNetworkManager.JniEntryScanMode();
-
-	}
-
-	protected void onResume() {
-		super.onResume();
-		checkWifi();
 
 	}
 
