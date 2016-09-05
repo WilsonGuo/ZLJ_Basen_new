@@ -1,0 +1,198 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.basen"
+    android:versionCode="1"
+    android:versionName="V1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:name="com.example.smarteair.EairApplaction"
+        android:allowBackup="true"
+        android:icon="@drawable/icon_3"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+         <activity
+            android:name="com.zlj.basen.BasenMainActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.zlj.basen.activity.sub.SetActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.sub.SearchActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.main.DeviceInfoActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.sub.AboutUsActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.sub.FAQActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.sub.UserNoteActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.zlj.basen.activity.sub.AddDeviceActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        
+        
+        
+        <activity
+            android:name="com.zlj.basen.activity.sub.LauncherActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@*android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       
+        <activity
+            android:name="com.example.smarteair.activity.DeviceHomePageActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.DeviceHomePageActivity_1"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.T1DeviceHomePageActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.CenterDeviceHomePageActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.LoginActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.zlj.basen.activity.sub.ConfigDeviceActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.NetworkTestActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.OptionActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.OpenActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.FilterActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.TimeActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.zlj.basen.activity.sub.ScanDeviceActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.FAQActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.UserGuideActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.AboutActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.EditDeviceInfoActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.smarteair.activity.HelloSeekBarActivity"
+            android:configChanges="keyboardHidden|navigation|orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+    </application>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+</manifest>
