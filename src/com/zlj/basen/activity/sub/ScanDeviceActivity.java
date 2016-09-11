@@ -49,6 +49,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 	private List<ScanDevice> mGotDevice;
 	private List<ScanDevice> mCheckedDevice;
 	private List<ScanDevice> mQueryDevice;
+	private List<ScanDevice> mAllDevice;
 
 	private FullProgressDialog mProgressDialog;
 	private SelectAdapter mSimpleAdapter;
@@ -60,6 +61,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 	ImageButton showNewBtn;
 	ImageButton showAllBtn;
 	ImageButton addToListBtn;
+
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.scandevice_layout);
@@ -75,48 +77,48 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 				ScanDeviceActivity.this.finish();
 			}
 		});
-		
-		showNewBtn=(ImageButton) this.findViewById(R.id.show_new_btn);
+
+		showNewBtn = (ImageButton) this.findViewById(R.id.show_new_btn);
 		showNewBtn.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
-				if (event.getAction()==MotionEvent.ACTION_DOWN) {
-					
-				}else if(event.getAction()==MotionEvent.ACTION_UP){
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					showNewBtn.setImageResource(R.drawable.search_show_new_device_selected);
 					showAllBtn.setImageResource(R.drawable.search_show_all);
-					showNew=true;
+					showNew = true;
 					refreshView();
 				}
-				
+
 				return false;
 			}
 		});
-		
-		showAllBtn=(ImageButton) this.findViewById(R.id.show_all_btn);
+
+		showAllBtn = (ImageButton) this.findViewById(R.id.show_all_btn);
 		showAllBtn.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
-				if (event.getAction()==MotionEvent.ACTION_DOWN) {
-					
-				}else if(event.getAction()==MotionEvent.ACTION_UP){
-					
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+
 					showNewBtn.setImageResource(R.drawable.search_show_new_device);
 					showAllBtn.setImageResource(R.drawable.search_show_all_selected);
-					showNew=false;
+					showNew = false;
 					refreshView();
 				}
-				
+
 				return false;
 			}
 		});
-		
-	
+
 		mGotDevice = new ArrayList<ScanDevice>();
 		mQueryDevice = new ArrayList<ScanDevice>();
 		mCheckedDevice = new ArrayList<ScanDevice>();
+		mAllDevice = new ArrayList<ScanDevice>();
 		mNetworkManager = NetWorkManager.getInstance(this);
 		// mNetworkManager.JniEntryScanMode();
 		mEairController = EairControler.getInstance(this);
@@ -129,12 +131,25 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 				info.id = id;
 				info.mac = Integer.toString(id & 0x7fffffff);
 				info.deviceName = info.mac;
-               Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>info.deviceName="+info.deviceName);
 				if (info != null && info.id != 0) {
-					if (!isNewID(info.id)) {
-						mGotDevice.add(info);
-						refreshView();
+					if (EairApplaction.allDeviceList != null) {
+						if (EairApplaction.allDeviceList.size() > 0) {
+							boolean isNew = true;
+							for (int i = 0; i < EairApplaction.allDeviceList.size(); i++) {
+								if (info.id == EairApplaction.allDeviceList.get(i).terminalId) {
+									isNew = false;
+								}
+							}
+							if (isNew) {
+								mGotDevice.add(info);
+								refreshView();
+							}
+						} else {
+							mGotDevice.add(info);
+							refreshView();
+						}
 					}
+
 				}
 			}
 		});
@@ -154,6 +169,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 		// mNetworkManager.JniEntryScanMode();
 		mNetworkManager.setDeviceStatusChangeListener(this);
 	}
+
 	public ScanDeviceActivity() {
 		mInConfig = false;
 	}
@@ -182,8 +198,14 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 					mQueryDevice.clear();
 					for (int i = 0; i < mSimpleAdapter.getCount(); i++) {
 
-						if (mGotDevice.get(i).checked) {
-							mCheckedDevice.add(mGotDevice.get(i));
+						if (showNew) {
+							if (mGotDevice.get(i).checked) {
+								mCheckedDevice.add(mGotDevice.get(i));
+							}
+						} else {
+							if (mAllDevice.get(i).checked) {
+								mCheckedDevice.add(mAllDevice.get(i));
+							}
 						}
 
 					}
@@ -207,48 +229,28 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 	}
 
 	private void queryProc() {
-		Log.e("TAG", "*************************************>>>>>queryProc()");
 
 		if (mQueryDevice.size() > 0) {
-			Log.e("TAG", "*************************************>>>>>mQueryDevice.size() > 0");
 
 			ScanDevice sd = mQueryDevice.get(0);
-
 			EairApplaction.mNetWorkManager.JniActiveDevice(sd.id);
-			Log.e("TAG", "**************************************>>>>>JniActiveDevice");
 			mProcDevice = sd;
 			mEairController.airQueryState(mProcDevice.id);
-			Log.e("TAG", "**************************************>>>>>airQueryState");
 
 			mQueryDevice.remove(0);
-			
-		} else {
-			Log.e("TAG", "**************************************>>>>>mQueryDevice.size() < 0");
 
+		} else {
 			back();
 		}
 
 	}
 
 	private void SaveConfig() {
-		Log.e("TAG", "*************************************SaveConfig();");
 		ScanDevice di = mCheckedDevice.get(0);
 		mNewDevice = di;
 		NetWorkManager.getInstance(this).AddNewWifiDev(di.id);
 		mCheckedDevice.remove(0);
 
-	}
-
-	private boolean isNewID(int id) {
-		for (ScanDevice di : mGotDevice) {
-			if (di != null) {
-				if (di != null && di.id == id) {
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 
 	@Override
@@ -259,22 +261,40 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 		mNetworkManager.JniExitScanMode();
 	}
 
-	
-    boolean showNew=true;
+	boolean showNew = true;
+
 	private void refreshView() {
 
-		if (mGotDevice.size() > 0) {
-			mNoDevice.setVisibility(View.GONE);
-		} else {
-			mNoDevice.setVisibility(View.VISIBLE);
-		}
-
-		mSimpleAdapter = new SelectAdapter(this, mGotDevice);
-
 		if (showNew) {
-			mSimpleAdapter = new SelectAdapter(this, mQueryDevice);
-		}else{
+			if (mGotDevice.size() > 0) {
+				mNoDevice.setVisibility(View.GONE);
+			} else {
+				mNoDevice.setVisibility(View.VISIBLE);
+			}
 			mSimpleAdapter = new SelectAdapter(this, mGotDevice);
+		} else {
+			if (mGotDevice.size() > 0 || EairApplaction.allDeviceList.size() > 0) {
+				mNoDevice.setVisibility(View.GONE);
+			} else {
+				mNoDevice.setVisibility(View.VISIBLE);
+			}
+			if (mAllDevice != null) {
+				mAllDevice.clear();
+				mAllDevice.addAll(mGotDevice);
+
+				for (int i = 0; i < EairApplaction.allDeviceList.size(); i++) {
+					ScanDevice device = new ScanDevice();
+					device.id = EairApplaction.allDeviceList.get(i).getTerminalId();
+					device.mac = EairApplaction.allDeviceList.get(i).getDeviceMac();
+					device.deviceName = EairApplaction.allDeviceList.get(i).getDeviceName();
+					device.deviceType = EairApplaction.allDeviceList.get(i).getDeviceType();
+					mAllDevice.add(device);
+					Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>	mAllDevice.add(device):" + device.id);
+
+				}
+			}
+			mSimpleAdapter = new SelectAdapter(this, mAllDevice);
+
 		}
 		mDeviceListView.setAdapter(mSimpleAdapter);
 		mDeviceListView.setOnItemClickListener(new OnItemClickListener() {
@@ -282,13 +302,25 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
 				mProgressDialog = null;
-				if (mGotDevice.get(position).checked) {
-					mGotDevice.get(position).checked = false;
-					mCheckedDevice.remove(mGotDevice.get(position));
+
+				if (showNew) {
+					if (mGotDevice.get(position).checked) {
+						mGotDevice.get(position).checked = false;
+						mCheckedDevice.remove(mGotDevice.get(position));
+					} else {
+						mCheckedDevice.add(mGotDevice.get(position));
+						mGotDevice.get(position).checked = true;
+					}
 				} else {
-					mCheckedDevice.add(mGotDevice.get(position));
-					mGotDevice.get(position).checked = true;
+					if (mAllDevice.get(position).checked) {
+						mAllDevice.get(position).checked = false;
+						mCheckedDevice.remove(mAllDevice.get(position));
+					} else {
+						mCheckedDevice.add(mAllDevice.get(position));
+						mAllDevice.get(position).checked = true;
+					}
 				}
+
 				mSimpleAdapter.notifyDataSetChanged();
 
 			}
