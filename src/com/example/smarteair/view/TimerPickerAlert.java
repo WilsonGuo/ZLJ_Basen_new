@@ -1,23 +1,26 @@
 
 package com.example.smarteair.view;
 
-import kankan.wheel.widget.OnWheelChangedListener;
-import kankan.wheel.widget.OnWheelClickedListener;
-import kankan.wheel.widget.OnWheelScrollListener;
-import kankan.wheel.widget.WheelView;
-import kankan.wheel.widget.adapters.NumericWheelAdapter;
+import com.example.basen.R;
+import com.example.smarteair.EairApplaction;
+import com.example.smarteair.data.EairInfo;
+import com.example.smarteair.net.EairControler;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
-
-import com.example.smarteair.EairApplaction;
-import com.example.basen.R;
-import com.example.smarteair.data.EairInfo;
-import com.example.smarteair.net.EairControler;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import kankan.wheel.widget.OnWheelChangedListener;
+import kankan.wheel.widget.OnWheelClickedListener;
+import kankan.wheel.widget.OnWheelScrollListener;
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.MinNumericWheelAdapter;
+import kankan.wheel.widget.adapters.NumericWheelAdapter;
 
 public class TimerPickerAlert {
 
@@ -112,7 +115,7 @@ public class TimerPickerAlert {
 		hours.setCyclic(true);
 
 		final WheelView mins = (WheelView) parent.findViewById(R.id.mins);
-		mins.setViewAdapter(new NumericWheelAdapter(context, 0, 59, "%02d"));
+		mins.setViewAdapter(new MinNumericWheelAdapter(context, 0, 59, "%02d"));
 		mins.setCurrentItem(mTimerStartMin % 60);
 		mins.setCyclic(true);
 
@@ -122,7 +125,7 @@ public class TimerPickerAlert {
 		endHours.setCyclic(true);
 
 		final WheelView endMins = (WheelView) parent.findViewById(R.id.end_mins);
-		endMins.setViewAdapter(new NumericWheelAdapter(context, 0, 59, "%02d"));
+		endMins.setViewAdapter(new MinNumericWheelAdapter(context, 0, 59, "%02d"));
 		endMins.setCurrentItem(mTimerEndMin % 60);
 		endMins.setCyclic(true);
 

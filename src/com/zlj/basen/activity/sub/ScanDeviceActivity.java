@@ -43,7 +43,6 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 	private ImageButton mConfirmButton;
 
 	NetWorkManager mNetworkManager;
-
 	private ListView mDeviceListView;
 	private TextView mNoDevice;
 	private List<ScanDevice> mGotDevice;

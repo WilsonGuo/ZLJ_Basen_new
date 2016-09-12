@@ -22,7 +22,8 @@ package kankan.wheel.widget;
 import java.util.LinkedList;
 import java.util.List;
 
-import kankan.wheel.widget.adapters.WheelViewAdapter;
+import com.example.basen.R;
+
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
@@ -35,7 +36,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
-import com.example.basen.R;
+import kankan.wheel.widget.adapters.WheelViewAdapter;
 
 /**
  * Numeric wheel view.
@@ -424,7 +425,7 @@ public class WheelView extends View {
 	 */
 	private void initResourcesIfNecessary() {
 		if (centerDrawable == null) {
-			centerDrawable = getContext().getResources().getDrawable(R.drawable.wheel_val);
+			centerDrawable = getContext().getResources().getDrawable(R.drawable.basen_time_picker_bg_long);
 		}
 
 		if (topShadow == null) {
@@ -435,7 +436,7 @@ public class WheelView extends View {
 			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, SHADOWS_COLORS);
 		}
 
-		//setBackgroundResource(R.drawable.wheel_bg);
+//		setBackgroundResource(R.drawable.wheel_bg);
 	}
 	
 	/**
@@ -555,7 +556,7 @@ public class WheelView extends View {
 	        updateView();
 
 	        drawItems(canvas);
-	        //drawCenterRect(canvas);
+//	        drawCenterRect(canvas);
 		}
 		
         //drawShadows(canvas);
