@@ -14,12 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.OnWheelClickedListener;
 import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
-import kankan.wheel.widget.adapters.MinNumericWheelAdapter;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
 
 public class TimerPickerAlert {
@@ -40,6 +40,9 @@ public class TimerPickerAlert {
 	private static Button mConfirmButton;
 	private static Dialog mDialog;
 	private static Context mContext;
+	
+	 ImageView hour_up;
+	ImageView hour_down;
 
 	public static interface OnAlertSelectId {
 
@@ -115,7 +118,8 @@ public class TimerPickerAlert {
 		hours.setCyclic(true);
 
 		final WheelView mins = (WheelView) parent.findViewById(R.id.mins);
-		mins.setViewAdapter(new MinNumericWheelAdapter(context, 0, 59, "%02d"));
+		NumericWheelAdapter minAdapter = new NumericWheelAdapter(context, 0, 59, "%02d");
+		mins.setViewAdapter(minAdapter);
 		mins.setCurrentItem(mTimerStartMin % 60);
 		mins.setCyclic(true);
 
@@ -125,7 +129,9 @@ public class TimerPickerAlert {
 		endHours.setCyclic(true);
 
 		final WheelView endMins = (WheelView) parent.findViewById(R.id.end_mins);
-		endMins.setViewAdapter(new MinNumericWheelAdapter(context, 0, 59, "%02d"));
+		NumericWheelAdapter minEndAdapter = new NumericWheelAdapter(context, 0, 59, "%02d");
+
+		endMins.setViewAdapter(minEndAdapter);
 		endMins.setCurrentItem(mTimerEndMin % 60);
 		endMins.setCyclic(true);
 
@@ -205,11 +211,89 @@ public class TimerPickerAlert {
 				timeChanged = false;
 			}
 		};
-
 		hours.addScrollingListener(scrollListener);
 		mins.addScrollingListener(scrollListener);
 		endHours.addScrollingListener(scrollListener2);
 		endMins.addScrollingListener(scrollListener2);
+		
+		
+		ImageView hour_up_view=(ImageView)parent.findViewById(R.id.hour_up);
+		hour_up_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				hours.scroll(-1, mTimerStartHour);
+			}
+		});
+		ImageView hour_down_view=(ImageView)parent.findViewById(R.id.hour_down);
+		hour_down_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				hours.scroll(1, mTimerStartHour);
+			}
+		});
+		
+		ImageView min_up_view=(ImageView)parent.findViewById(R.id.mins_up);
+		min_up_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mins.scroll(-1, mTimerStartMin);
+			}
+		});
+		ImageView min_down_view=(ImageView)parent.findViewById(R.id.mins_down);
+		min_down_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mins.scroll(1, mTimerStartMin);
+			}
+		});
+		
+		ImageView end_hour_up_view=(ImageView)parent.findViewById(R.id.end_hour_up);
+		end_hour_up_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				endHours.scroll(-1, mTimerStartHour);
+			}
+		});
+		ImageView end_hour_down_view=(ImageView)parent.findViewById(R.id.end_hour_down);
+		end_hour_down_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				endHours.scroll(1, mTimerStartHour);
+			}
+		});
+		
+		ImageView end_min_up_view=(ImageView)parent.findViewById(R.id.end_mins_up);
+		end_min_up_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				endMins.scroll(-1, mTimerEndHour);
+			}
+		});
+		ImageView end_min_down_view=(ImageView)parent.findViewById(R.id.end_mins_down);
+		end_min_down_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				endMins.scroll(1, mTimerEndMin);
+			}
+		});
+		
+	
 	}
 
 	/**

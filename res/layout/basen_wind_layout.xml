@@ -68,7 +68,7 @@
                     <SeekBar
                         android:id="@+id/progress_wind_out"
                         android:layout_width="200dp"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:max="9"
                         android:padding="10dp"
@@ -124,7 +124,7 @@
                         android:id="@+id/progress_wind_in"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="200dp"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:max="9"
                          android:padding="10dp"

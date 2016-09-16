@@ -24,7 +24,7 @@ import android.content.Context;
 public class NumericWheelAdapter extends AbstractWheelTextAdapter {
     
     /** The default min value */
-    public static final int DEFAULT_MAX_VALUE = 9;
+    public static final int DEFAULT_MAX_VALUE = 59;
 
     /** The default max value */
     private static final int DEFAULT_MIN_VALUE = 0;
@@ -68,17 +68,15 @@ public class NumericWheelAdapter extends AbstractWheelTextAdapter {
         this.maxValue = maxValue;
         this.format = format;
     }
-
     @Override
     public CharSequence getItemText(int index) {
         if (index >= 0 && index < getItemsCount()) {
             int value = minValue + index;
-//            Log.e("TAG",">>>>>>>>>>>>>>>>>>>value="+Integer.toString(value));
             return format != null ? String.format(format, value) : Integer.toString(value);
-          
         }
         return null;
     }
+  
 
     @Override
     public int getItemsCount() {

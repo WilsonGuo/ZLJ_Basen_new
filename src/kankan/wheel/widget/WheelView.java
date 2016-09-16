@@ -258,6 +258,7 @@ public class WheelView extends View {
 	 */
 	protected void notifyChangingListeners(int oldValue, int newValue) {
 		for (OnWheelChangedListener listener : changingListeners) {
+		
 			listener.onChanged(this, oldValue, newValue);
 		}
 	}

@@ -64,7 +64,7 @@
 
                     <ImageView
                         android:id="@+id/mins_bg"
-                        android:layout_width="60dp"
+                        android:layout_width="40dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/hour_bg"
@@ -81,7 +81,7 @@
                         android:id="@+id/mins_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@+id/hour_up"
                         android:src="@drawable/arrow_up" />
 
@@ -97,7 +97,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mins_up"
-                        android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@id/hour"
                         android:background="@color/color_my_transparent" />
 
@@ -113,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/hour"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@+id/hour_down"
                         android:src="@drawable/arrow_down" />
                 </RelativeLayout>
@@ -151,7 +150,7 @@
 
                     <ImageView
                         android:id="@+id/end_mins_bg"
-                        android:layout_width="60dp"
+                        android:layout_width="40dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/end_hour_bg"
@@ -168,7 +167,7 @@
                         android:id="@+id/end_mins_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@+id/end_hour_up"
                         android:src="@drawable/arrow_up" />
 
@@ -184,9 +183,9 @@
                         android:id="@+id/end_mins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_below="@+id/end_mins_up"
+                     
                         android:layout_toRightOf="@id/end_hour"
-                         android:layout_below="@+id/end_mins_up"
                         android:background="@color/color_my_transparent"
                         android:textColor="#cccccc" />
 
@@ -202,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/end_hour"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@+id/end_hour_down"
                         android:src="@drawable/arrow_down" />
                 </RelativeLayout>
