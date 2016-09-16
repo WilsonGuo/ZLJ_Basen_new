@@ -539,95 +539,96 @@ public class EairControler {
 		for (int i = 0; i < stateData.length; i++) {
 			int v = stateData[i] & 0xFF;
 			String hv = Integer.toHexString(v);
-			Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stateData:" + i + "=" + hv);
+			//Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stateData:" + i + "=" + hv);
 		}
 		eairInfo.logoIndex=stateData[STATE_DATA_INDEX_LOGO_TYPE];
-		Log.e("TAG", "***************************************logoIndex:" + eairInfo.logoIndex);
+		//Log.e("TAG", "***************************************logoIndex:" + eairInfo.logoIndex);
 
-		
-		
 		eairInfo.sn = sn;
 		byte setBit_H = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_H];
 		byte setBit_L = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_L];
 		String stringH = byteToBit(setBit_H);
 		String stringL = byteToBit(setBit_L);
-		//Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
+		Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
 
-		byte bit_H = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_H];
-		byte bit_L = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_L];
+		byte bit_H = stateData[STATE_DATA_INDEX_FUCTION_BIT_H];
+		byte bit_L = stateData[STATE_DATA_INDEX_FUCTION_BIT_L];
 		String striH = byteToBit(bit_H);
 		String striL = byteToBit(bit_L);
-		//Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
+		Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
 
 		byte[] setBitsH = getBooleanArray(setBit_H);
 		byte[] setBitsL = getBooleanArray(setBit_L);
 		byte[] BitsH = getBooleanArray(bit_H);
 		byte[] BitsL = getBooleanArray(bit_L);
-		if (setBitsL[setBitsL.length - 1] == 1 && BitsL[BitsL.length - 1] == 1) {
+
+		if ( BitsL[BitsL.length - 1] == 1) {
 			eairInfo.o1 = true;
 		} else {
 			eairInfo.o1 = false;
 		}
 
-		if (setBitsL[setBitsL.length - 2] == 1 && BitsL[BitsL.length - 2] == 1) {
+		if (BitsL[BitsL.length - 2] == 1) {
 			eairInfo.heat = true;
 		} else {
 			eairInfo.heat = false;
 		}
-		if (setBitsL[setBitsL.length - 3] == 1 && BitsL[BitsL.length - 3] == 1) {
+
+		if (BitsL[BitsL.length - 3] == 1) {
 			eairInfo.windIn = true;
 		} else {
 			eairInfo.windIn = false;
 		}
 
-		if (setBitsL[setBitsL.length - 4] == 1 && BitsL[BitsL.length - 4] == 1) {
+		if (BitsL[BitsL.length - 4] == 1) {
 			eairInfo.timerOn = true;
 		} else {
 			eairInfo.timerOn = false;
 		}
 
-		if (setBitsL[setBitsL.length - 5] == 1 && BitsL[BitsL.length - 5] == 1) {
+		if ( BitsL[BitsL.length - 5] == 1) {
 			eairInfo.windOut = true;
 		} else {
 			eairInfo.windOut = false;
 		}
-
-		if (setBitsL[setBitsL.length - 6] == 1 && BitsL[BitsL.length - 6] == 1) {
+		
+		if (BitsL[BitsL.length - 6] == 1) {
 			eairInfo.uv = true;
 		} else {
 			eairInfo.uv = false;
 		}
 
-		if (setBitsL[setBitsL.length - 7] == 1 && BitsL[BitsL.length - 7] == 1) {
+		if ( BitsL[BitsL.length - 7] == 1) {
 			eairInfo.o3 = true;
 		} else {
 			eairInfo.o3 = false;
 		}
-
-		if (setBitsL[0] == 1 && BitsL[0] == 1) {
+		
+		
+		if (setBitsL[0] == 1) {
 			eairInfo.set_co2 = true;
 		} else {
 			eairInfo.set_co2 = false;
 		}
 
-		if (setBitsH[setBitsH.length - 1] == 1 && BitsH[BitsH.length - 1] == 1) {
+		if (setBitsH[setBitsH.length - 1] == 1 ) {
 			eairInfo.set_pm25 = true;
 		} else {
 			eairInfo.set_pm25 = false;
 		}
 
-		if (setBitsH[setBitsH.length - 2] == 1 && BitsH[BitsH.length - 2] == 1) {
+		if (setBitsH[setBitsH.length - 2] == 1 ) {
 			eairInfo.set_tvoc = true;
 		} else {
 			eairInfo.set_tvoc = false;
 		}
-		if (setBitsH[setBitsH.length - 3] == 1 && BitsH[BitsH.length - 3] == 1) {
+		if (setBitsH[setBitsH.length - 3] == 1 ) {
 			eairInfo.set_hcho = true;
 		} else {
 			eairInfo.set_hcho = false;
 		}
 
-		if (setBitsH[setBitsH.length - 4] == 1 && BitsH[BitsH.length - 4] == 1) {
+		if (setBitsH[setBitsH.length - 4] == 1 ) {
 			eairInfo.set_dingshi = true;
 		} else {
 			eairInfo.set_dingshi = false;

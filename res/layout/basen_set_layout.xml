@@ -25,7 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/more_title_txt" />
+            android:text="更多功能"
+            android:textColor="#3890ce"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            />
     </RelativeLayout>
 
     <LinearLayout

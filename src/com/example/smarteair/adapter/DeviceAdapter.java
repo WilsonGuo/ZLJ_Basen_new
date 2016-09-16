@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.example.smarteair.EairApplaction;
 import com.example.basen.R;
-import com.example.smarteair.activity.EditDeviceInfoActivity;
 import com.example.smarteair.data.ManageDevice;
 import com.example.smarteair.net.NetWorkManager;
 import com.example.smarteair.view.OnSingleClickListener;
+import com.zlj.basen.activity.sub.EditDeviceInfoActivity;
 
 import android.content.Context;
 import android.content.Intent;

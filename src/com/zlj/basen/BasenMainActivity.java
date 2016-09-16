@@ -8,8 +8,6 @@ import java.util.TimerTask;
 
 import com.example.smarteair.EairApplaction;
 import com.example.basen.R;
-import com.example.smarteair.activity.EditDeviceInfoActivity;
-import com.example.smarteair.activity.OpenActivity;
 import com.example.smarteair.activity.OptionActivity;
 import com.example.smarteair.adapter.DeviceAdapter;
 import com.example.smarteair.common.LogManager;
@@ -27,6 +25,8 @@ import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.ListOptionAlert;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.zlj.basen.activity.main.DeviceInfoActivity;
+import com.zlj.basen.activity.sub.EditDeviceInfoActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 import com.zlj.basen.activity.sub.ScanDeviceActivity;
 import com.zlj.basen.activity.sub.SetActivity;
 

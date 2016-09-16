@@ -11,6 +11,7 @@ import com.example.smarteair.net.EairControler;
 import com.example.smarteair.net.NetWorkManager;
 import com.example.smarteair.view.FullProgressDialog;
 import com.zlj.basen.BaseActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;

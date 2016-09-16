@@ -15,6 +15,7 @@ import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.HumiSetAlert;
 import com.example.smarteair.view.TimerPickerAlert;
 import com.zlj.basen.BaseActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

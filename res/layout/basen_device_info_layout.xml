@@ -20,7 +20,8 @@
             android:layout_centerVertical="true"
             android:background="#00000000"
             android:padding="4dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/txt"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/backBtn"
-            android:text="设备时间"
+            android:text="时间"
             android:textColor="#3890ce"
             android:textSize="15sp" />
 
@@ -94,8 +95,8 @@
                     android:text="180"
                     android:textColor="#da4336"
                     android:textSize="60sp"
-                    android:visibility="gone"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -109,11 +110,11 @@
                         android:id="@+id/lever_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="污"
-                        android:textSize="20sp"
+                        android:background="@drawable/lever_wu"
                         android:gravity="center"
+                        android:text="污"
                         android:textColor="#ffffff"
-                        android:background="@drawable/lever_wu" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/lever_txt"
@@ -129,8 +130,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="2dp" >
 
@@ -158,55 +159,12 @@
                     android:textColor="#3890ce"
                     android:textSize="16sp" />
             </LinearLayout>
- <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/line" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="2dp" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="CO2"
-                        android:textColor="#3890ce"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/lever_CO2_value"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="10"
-                        android:textColor="#3890ce"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="ppm"
-                        android:textColor="#3890ce"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line" />
-
-            <LinearLayout
+ <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -249,6 +207,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="CO2"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/lever_CO2_value"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="10"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="ppm"
+                        android:textColor="#3890ce"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line" />
+
+           
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -267,7 +270,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:text="甲醇"
+                        android:text="甲醛"
                         android:textColor="#3890ce"
                         android:textSize="16sp" />
 
@@ -298,7 +301,8 @@
                 android:id="@+id/basen_timer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal" >
 
@@ -479,34 +483,47 @@
     <LinearLayout
         android:id="@+id/bottom_up_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_below="@+id/mid_layout"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/new_wind_layout"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_xinfeng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:src="@drawable/info_xinfeng"
-                android:text="" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="14dp"
+                android:scaleType="center"
+                android:src="@drawable/basen_paifeng_feng" />
 
-            <TextView
+            <ImageView
+                android:id="@+id/btn_xinfeng_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:src="@drawable/basen_paifeng_bg"
+                android:scaleType="center" />
+
+            <TextView
+                 android:id="@+id/xinfeng_lever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_xinfeng_bg"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="4dp"
+                android:text="新风️"
                 android:textColor="#3890ce"
-                android:textSize="11sp" />
-        </LinearLayout>
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/guanji_layout"
@@ -531,29 +548,43 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/paifeng_layout"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_paifeng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="14dp"
                 android:background="#00000000"
-                android:src="@drawable/info_paifeng"
-                android:text="" />
+                android:scaleType="center"
+                android:src="@drawable/basen_paifeng_feng" />
 
-            <TextView
+            <ImageView
+                android:id="@+id/btn_paifeng_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:src="@drawable/basen_paiwu_bg"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@+id/paifeng_lever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_paifeng_bg"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="4dp"
+                android:text="排风️"
                 android:textColor="#3890ce"
-                android:textSize="11sp" />
-        </LinearLayout>
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -561,7 +592,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom_up_layout"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
         android:gravity="center"
         android:orientation="horizontal" >
 
@@ -576,19 +608,19 @@
                 android:id="@+id/btn_moshi"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="center"
                 android:background="#00000000"
+                android:scaleType="center"
                 android:src="@drawable/moshi_icon"
                 android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="模式"
                 android:textColor="#3890ce"
-                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp"/>
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -600,21 +632,21 @@
 
             <ImageView
                 android:id="@+id/btn_gongneng"
-                 android:layout_width="40dp"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="center"
                 android:background="#00000000"
+                android:scaleType="center"
                 android:src="@drawable/gongneng_icon"
                 android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="功能"
                 android:textColor="#3890ce"
-                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -628,19 +660,19 @@
                 android:id="@+id/btn_fengliang"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="center"
                 android:background="#00000000"
+                android:scaleType="center"
                 android:src="@drawable/fengliang_icon"
                 android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="风量"
                 android:textColor="#3890ce"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -652,10 +684,10 @@
 
             <ImageView
                 android:id="@+id/btn_hengshi"
-                 android:layout_width="40dp"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="center"
                 android:background="#00000000"
+                android:scaleType="center"
                 android:src="@drawable/hengshi_icon"
                 android:text="" />
 
@@ -663,15 +695,15 @@
                 android:id="@+id/basen_hengshi_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginTop="4dp"
                 android:text="恒湿80%"
                 android:textColor="#3890ce"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-             android:id="@+id/lvwang_layout"
+            android:id="@+id/lvwang_layout"
             android:layout_width="60dp"
             android:layout_height="80dp"
             android:gravity="center"
@@ -679,32 +711,31 @@
 
             <ImageView
                 android:id="@+id/btn_lvwang"
-                 android:layout_width="40dp"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="center"
                 android:background="#00000000"
+                android:scaleType="center"
                 android:src="@drawable/lvwang_icon"
                 android:text="" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="滤网"
+                android:layout_marginTop="4dp"
+                android:text="滤网信息"
                 android:textColor="#3890ce"
-                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
-   
     <RelativeLayout
         android:id="@+id/viewLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#efffffff"
-        android:visibility="gone"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:visibility="gone" >
     </RelativeLayout>
 
 </RelativeLayout>

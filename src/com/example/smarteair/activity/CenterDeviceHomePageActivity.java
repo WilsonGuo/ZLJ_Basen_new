@@ -37,6 +37,7 @@ import com.example.smarteair.view.CentralBLTimeAlert;
 import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.TimerPickerAlert;
 import com.zlj.basen.BaseActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 
 public class CenterDeviceHomePageActivity extends BaseActivity implements DeviceStatusChangeListener
 {

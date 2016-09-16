@@ -48,6 +48,7 @@ import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.T1BLTimeAlert;
 import com.example.smarteair.view.TimerPickerAlert;
 import com.zlj.basen.BaseActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 
 public class T1DeviceHomePageActivity extends BaseActivity implements DeviceStatusChangeListener
 {

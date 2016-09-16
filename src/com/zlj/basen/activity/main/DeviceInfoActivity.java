@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 
 import com.example.basen.R;
 import com.example.smarteair.EairApplaction;
-import com.example.smarteair.activity.OpenActivity;
 import com.example.smarteair.data.DataInfo;
 import com.example.smarteair.data.DeviceStatusChangeListener;
 import com.example.smarteair.data.EairInfo;
@@ -17,15 +16,18 @@ import com.example.smarteair.view.FullProgressDialog;
 import com.example.smarteair.view.HumiSetAlert;
 import com.example.smarteair.view.TimerPickerAlert;
 import com.zlj.basen.BaseActivity;
+import com.zlj.basen.activity.sub.OpenActivity;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.res.ColorStateList;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -113,23 +115,28 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		temp_out = (TextView) this.findViewById(R.id.temp_out);
 		hump_out = (TextView) this.findViewById(R.id.hump_out);
 		basen_hengshi_txt = (TextView) this.findViewById(R.id.basen_hengshi_txt);
-
-		new_wind_layout = (LinearLayout) this.findViewById(R.id.new_wind_layout);
+		
+		paifeng_lever=(TextView) this.findViewById(R.id.paifeng_lever);
+		xinfeng_lever=(TextView) this.findViewById(R.id.xinfeng_lever);
+		btn_paifeng_bg=(ImageView) this.findViewById(R.id.btn_paifeng_bg);
+		btn_xinfeng_bg=(ImageView) this.findViewById(R.id.btn_xinfeng_bg);
+		
+		new_wind_layout = (RelativeLayout) this.findViewById(R.id.new_wind_layout);
 		guanji_layout = (LinearLayout) this.findViewById(R.id.guanji_layout);
-		paifeng_layout = (LinearLayout) this.findViewById(R.id.paifeng_layout);
+		paifeng_layout = (RelativeLayout) this.findViewById(R.id.paifeng_layout);
 		mode_layout = (LinearLayout) this.findViewById(R.id.mode_layout);
 		gongneng_layout = (LinearLayout) this.findViewById(R.id.gongneng_layout);
 		fengsu_layout = (LinearLayout) this.findViewById(R.id.fengsu_layout);
 		lvwang_layout = (LinearLayout) this.findViewById(R.id.lvwang_layout);
 		hengshi_main_layout = (LinearLayout) this.findViewById(R.id.hengshi_mg_layout);
-		btn_xinfeng = (ImageButton) this.findViewById(R.id.btn_xinfeng);
+		btn_xinfeng = (ImageView) this.findViewById(R.id.btn_xinfeng);
 		btn_guanji = (ImageButton) this.findViewById(R.id.btn_guanji);
-		btn_paifeng = (ImageButton) this.findViewById(R.id.btn_paifeng);
+		btn_paifeng = (ImageView) this.findViewById(R.id.btn_paifeng);
 		btn_moshi = (ImageView) this.findViewById(R.id.btn_moshi);
 		btn_gongneng = (ImageView) this.findViewById(R.id.btn_gongneng);
 		btn_fengliang = (ImageView) this.findViewById(R.id.btn_fengliang);
 		btn_lvWang = (ImageView) this.findViewById(R.id.btn_lvwang);
-		btn_xinfeng.setOnClickListener(new OnClickListener() {
+		btn_xinfeng_bg.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mEairController.airOpenWindIn(mEairInfo.sn);
@@ -141,7 +148,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				mEairController.airClose(mEairInfo.sn);
 			}
 		});
-		btn_paifeng.setOnClickListener(new OnClickListener() {
+		btn_paifeng_bg.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
@@ -222,13 +229,12 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		mEairController = EairControler.getInstance(this);
 		mNetworkManager = NetWorkManager.getInstance(this);
 		mNetworkManager.setDeviceStatusChangeListener(this);
+		
 		operatingAnim= AnimationUtils.loadAnimation(this, R.anim.air_speed_rotate);  
 		LinearInterpolator lin = new LinearInterpolator();  
 		operatingAnim.setInterpolator(lin);
 		
-		if (operatingAnim != null) {  
-			btn_fengliang.startAnimation(operatingAnim);  
-		}  
+	
 	}
 	Animation operatingAnim;  
 	TextView titleView;
@@ -368,18 +374,18 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		return view;
 	}
 
-	LinearLayout new_wind_layout;
+	RelativeLayout new_wind_layout;
 	LinearLayout guanji_layout;
-	LinearLayout paifeng_layout;
+	RelativeLayout paifeng_layout;
 	LinearLayout mode_layout;
 	LinearLayout gongneng_layout;
 	LinearLayout fengsu_layout;
 	LinearLayout lvwang_layout;
 	LinearLayout hengshi_main_layout;
 
-	ImageButton btn_xinfeng;
+	ImageView btn_xinfeng;
 	ImageButton btn_guanji;
-	ImageButton btn_paifeng;
+	ImageView btn_paifeng;
 	ImageView btn_moshi;
 	ImageView btn_gongneng;
 	ImageView btn_fengliang;
@@ -387,6 +393,11 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	RelativeLayout viewLayout;
 	Context context;
 	LayoutInflater inflater;
+	
+	TextView xinfeng_lever;
+	TextView paifeng_lever;
+	ImageView btn_paifeng_bg;
+	ImageView btn_xinfeng_bg;
 
 	public View addFilterTimeView(int timeValue) {
 		View view = inflater.inflate(R.layout.basen_filter_time_layout, null);
@@ -429,7 +440,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		heat_layout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				funcName.setText("辅热");
 				mEairController.airOpenHeat(mEairInfo.sn);//
 
 			}
@@ -438,7 +448,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		shadu_layout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				funcName.setText("杀菌");
 				mEairController.airOpenUV(mEairInfo.sn);//
 
 			}
@@ -447,7 +456,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		fulizi_Layuot.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				funcName.setText("负离子");
 				mEairController.airOpenO1(mEairInfo.sn);//
 
 			}
@@ -640,14 +648,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	}
 
 	private void initEairView() {
-		// if (mFilterInfo != null) {
-		// mFilterInfo.setBackgroundDrawable(getResources().getDrawable(R.drawable.home_frame));
-		// }
-		//
-		// if (mFixHumi != null) {
-		// mFixHumi.setBackgroundDrawable(getResources().getDrawable(R.drawable.home_frame));
-		// }
-		//
+		
 		if (mEairInfo == null && !mInRefreshIng)
 			return;
 		if (mEairInfo.air == 0) {// 优
@@ -739,19 +740,37 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		}
 		basen_hengshi_txt.setText("恒湿" + mEairInfo.hengshidu + "%");
 		if (hump_in != null) {
-			hump_in.setText(String.format("%d%%", mEairInfo.indoorHumi));
+			if( mEairInfo.indoorHumi==255){
+				hump_in.setText("--");
+			}else{
+				hump_in.setText(String.format("%d%%", mEairInfo.indoorHumi));
+			}
+		
 		}
 
 		if (hump_out != null) {
-			hump_out.setText(String.format("%d%%", mEairInfo.outdoorHumi));
+			if( mEairInfo.outdoorHumi==255){
+				hump_out.setText("--");
+			}else{
+				hump_out.setText(String.format("%d%%", mEairInfo.outdoorHumi));
+			}
+		
 		}
 
 		if (temp_in != null) {
-			temp_in.setText(String.format("%d%s", mEairInfo.indoorTemp, getResources().getString(R.string.degree_c)));
+			if( mEairInfo.indoorTemp==127){
+				temp_in.setText("--");
+			}else{
+				temp_in.setText(String.format("%d%s", mEairInfo.indoorTemp, getResources().getString(R.string.degree_c)));
+			}
 		}
 
 		if (temp_out != null) {
-			temp_out.setText(String.format("%d%s", mEairInfo.outdoorTemp, getResources().getString(R.string.degree_c)));
+			if( mEairInfo.outdoorTemp==127){
+				temp_out.setText("--");
+			}else{
+				temp_out.setText(String.format("%d%s", mEairInfo.outdoorTemp, getResources().getString(R.string.degree_c)));
+			}
 		}
 		if (lever_pm25_value != null) {
 			lever_pm25_value.setText(String.format("%d", mEairInfo.pm25));
@@ -784,10 +803,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				lever_TVOC_value.setText("--");
 			}
 		}
-		// if (mFixHumi != null) {
-		// mFixHumi.setText(String.format("%s%d%%",
-		// getResources().getString(R.string.humi_set), mEairInfo.fixHumi));
-		// }
+	
 
 		if (device_time != null) {
 			device_time.setText(String.format("%s%02d:%02d", getResources().getString(R.string.device_time),
@@ -814,94 +830,52 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			// mFilterIconView.setImageResource(R.drawable.info);
 		}
 
-		// Drawable topDrawable;
-		// if (mEairInfo.heat) {
-		// topDrawable = getResources().getDrawable(R.drawable.state_heat_high);
-		// mButtonHeat.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// } else {
-		// topDrawable = getResources().getDrawable(R.drawable.state_heat);
-		// mButtonHeat.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// }
-		//
-		// if (mEairInfo.o1) {
-		// topDrawable = getResources().getDrawable(R.drawable.state_o1_high);
-		// mButtonO1.setCompoundDrawablesWithIntrinsicBounds(null, topDrawable,
-		// null, null);
-		//
-		// } else {
-		// topDrawable = getResources().getDrawable(R.drawable.state_o1);
-		// mButtonO1.setCompoundDrawablesWithIntrinsicBounds(null, topDrawable,
-		// null, null);
-		// }
-		//
-		// if (mEairInfo.windIn) {
-		//
-		// topDrawable =
-		// getResources().getDrawable(R.drawable.state_wind_in_high);
-		// mButtonWindIn.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// } else {
-		// topDrawable = getResources().getDrawable(R.drawable.state_wind_in);
-		// mButtonWindIn.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// }
-		//
-		// if (mEairInfo.windOut) {
-		// topDrawable =
-		// getResources().getDrawable(R.drawable.state_wind_out_high);
-		// mButtonWindOut.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// } else {
-		// topDrawable = getResources().getDrawable(R.drawable.state_wind_out);
-		// mButtonWindOut.setCompoundDrawablesWithIntrinsicBounds(null,
-		// topDrawable, null, null);
-		// }
-		//
-		// if (mWindInTextView != null) {
-		// if (!mEairInfo.windIn) {
-		// mWindInTextView.setText(R.string.text_wind_in_stop);
-		// ;
-		// } else {
-		// String s = String.format("%s %d",
-		// getResources().getString(R.string.text_wind_in),
-		// mEairInfo.windInLevel);
-		// mWindInTextView.setText(s);
-		// }
-		// }
-		//
-		if (btn_xinfeng != null) {
-			if (!mEairInfo.windOut) {
-
-				// mWindOutTextView.setText(R.string.text_wind_out_stop);
-				// ;
-			} else {
-				// String s = String.format("%s %d",
-				// getResources().getString(R.string.text_wind_out),
-				// mEairInfo.windOutLevel);
-				// mWindOutTextView.setText(s);
+		if(mEairInfo.windIn){
+			btn_xinfeng.setVisibility(View.VISIBLE);
+			btn_xinfeng_bg.setImageResource(R.drawable.basen_paifeng_bg);
+			xinfeng_lever.setTextColor(Color.argb(255, 54, 144, 206));
+			if (mEairInfo.speed_XF==0) {
+				btn_xinfeng.clearAnimation();
+				xinfeng_lever.setText("新风");
+			}else{
+				if(btn_xinfeng.getAnimation()!=null){
+					btn_xinfeng.clearAnimation();
+				}
+				xinfeng_lever.setText("新风 "+mEairInfo.speed_XF);
+				btn_xinfeng.startAnimation(operatingAnim);
 			}
-			
-			
-		}
-		if (mEairInfo.windInLevel==0) {
-			btn_fengliang.clearAnimation();
 		}else{
-			if(btn_fengliang.getAnimation()!=null){
-				btn_fengliang.clearAnimation();
+			btn_xinfeng_bg.setImageResource(R.drawable.basen_xinfeng_gray);
+			btn_xinfeng.clearAnimation();
+			xinfeng_lever.setText("新风");
+			btn_xinfeng.setVisibility(View.INVISIBLE);
+			xinfeng_lever.setTextColor(Color.argb(255, 230, 230, 230));
+		}
+	
+	
+		if(mEairInfo.windOut){
+			btn_paifeng.setVisibility(View.VISIBLE);
+			btn_paifeng_bg.setImageResource(R.drawable.basen_paiwu_bg);
+			paifeng_lever.setTextColor(Color.argb(255, 54, 144, 206));
+
+			if (mEairInfo.speed_PF==0) {
+				btn_paifeng.clearAnimation();
+				paifeng_lever.setText("排风 ");
+			}else{
+				if(btn_paifeng.getAnimation()!=null){
+					btn_paifeng.clearAnimation();
+				}
+				paifeng_lever.setText("排风 "+mEairInfo.speed_PF);
+				btn_paifeng.startAnimation(operatingAnim);
 			}
-			 btn_fengliang.startAnimation(operatingAnim);
+		}else{
+			btn_paifeng_bg.setImageResource(R.drawable.basen_paifeng_gray);
+			btn_paifeng.clearAnimation();
+			btn_paifeng.setVisibility(View.INVISIBLE);
+			paifeng_lever.setText("排风 ");
+			paifeng_lever.setTextColor(Color.argb(255, 230, 230, 230));
 		}
 		
-//		 if ((!mEairInfo.windIn) && (!mEairInfo.windOut)) {
-//			 btn_fengliang.clearAnimation();
-//		 } else {
-//			 btn_fengliang.startAnimation(operatingAnim);
-//		 }
-		
-		// mWindInTextView = (TextView) findViewById(R.id.wind_in_textview);
-		// mWindOutTextView = (TextView) findViewById(R.id.wind_out_textview);
 
 	}
 
