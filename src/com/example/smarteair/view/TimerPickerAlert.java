@@ -113,7 +113,8 @@ public class TimerPickerAlert {
 		}
 
 		final WheelView hours = (WheelView) parent.findViewById(R.id.hour);
-		hours.setViewAdapter(new NumericWheelAdapter(context, 0, 23));
+		NumericWheelAdapter hourAdapter = new NumericWheelAdapter(context, 0, 23, "%02d");
+		hours.setViewAdapter(hourAdapter);
 		hours.setCurrentItem(mTimerStartHour % 24);
 		hours.setCyclic(true);
 
@@ -124,7 +125,8 @@ public class TimerPickerAlert {
 		mins.setCyclic(true);
 
 		final WheelView endHours = (WheelView) parent.findViewById(R.id.end_hour);
-		endHours.setViewAdapter(new NumericWheelAdapter(context, 0, 23));
+		NumericWheelAdapter endHourAdapter = new NumericWheelAdapter(context, 0, 23, "%02d");
+		endHours.setViewAdapter(endHourAdapter);
 		endHours.setCurrentItem(mTimerEndHour % 24);
 		endHours.setCyclic(true);
 
