@@ -22,12 +22,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.content.res.ColorStateList;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -101,8 +99,8 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		lever_procress = (ImageView) this.findViewById(R.id.lever_procress);
 		lever_value = (TextView) this.findViewById(R.id.lever_value);
 		lever_img = (TextView) this.findViewById(R.id.lever_img);
-		lever_txt=(TextView) this.findViewById(R.id.lever_txt);
-		
+		lever_txt = (TextView) this.findViewById(R.id.lever_txt);
+
 		lever_pm25_value = (TextView) this.findViewById(R.id.lever_pm25_value);
 		lever_CO2_value = (TextView) this.findViewById(R.id.lever_CO2_value);
 		lever_TVOC_value = (TextView) this.findViewById(R.id.lever_TVOC_value);
@@ -115,12 +113,12 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		temp_out = (TextView) this.findViewById(R.id.temp_out);
 		hump_out = (TextView) this.findViewById(R.id.hump_out);
 		basen_hengshi_txt = (TextView) this.findViewById(R.id.basen_hengshi_txt);
-		
-		paifeng_lever=(TextView) this.findViewById(R.id.paifeng_lever);
-		xinfeng_lever=(TextView) this.findViewById(R.id.xinfeng_lever);
-		btn_paifeng_bg=(ImageView) this.findViewById(R.id.btn_paifeng_bg);
-		btn_xinfeng_bg=(ImageView) this.findViewById(R.id.btn_xinfeng_bg);
-		
+
+		paifeng_lever = (TextView) this.findViewById(R.id.paifeng_lever);
+		xinfeng_lever = (TextView) this.findViewById(R.id.xinfeng_lever);
+		btn_paifeng_bg = (ImageView) this.findViewById(R.id.btn_paifeng_bg);
+		btn_xinfeng_bg = (ImageView) this.findViewById(R.id.btn_xinfeng_bg);
+
 		new_wind_layout = (RelativeLayout) this.findViewById(R.id.new_wind_layout);
 		guanji_layout = (LinearLayout) this.findViewById(R.id.guanji_layout);
 		paifeng_layout = (RelativeLayout) this.findViewById(R.id.paifeng_layout);
@@ -136,6 +134,11 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		btn_gongneng = (ImageView) this.findViewById(R.id.btn_gongneng);
 		btn_fengliang = (ImageView) this.findViewById(R.id.btn_fengliang);
 		btn_lvWang = (ImageView) this.findViewById(R.id.btn_lvwang);
+		txt_mode = (TextView) this.findViewById(R.id.txt_mode);
+		txt_func = (TextView) this.findViewById(R.id.txt_func);
+		txt_wind = (TextView) this.findViewById(R.id.txt_wind);
+		txt_hengshi = (TextView) this.findViewById(R.id.basen_hengshi_txt);
+		txt_lvwang = (TextView) this.findViewById(R.id.txt_wang);
 		btn_xinfeng_bg.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -163,9 +166,29 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				viewLayout.addView(addModeView());
 			}
 		});
+		txt_mode.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				viewLayout.setVisibility(View.VISIBLE);
+				viewLayout.removeAllViews();
+				viewLayout.addView(addModeView());
+			}
+		});
 		btn_gongneng.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				viewLayout.setVisibility(View.VISIBLE);
+				viewLayout.removeAllViews();
+				viewLayout.addView(addFuncView());
+			}
+		});
+		txt_func.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				viewLayout.setVisibility(View.VISIBLE);
 				viewLayout.removeAllViews();
 				viewLayout.addView(addFuncView());
@@ -179,7 +202,28 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				viewLayout.addView(addWindView());
 			}
 		});
+		txt_wind.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				viewLayout.setVisibility(View.VISIBLE);
+				viewLayout.removeAllViews();
+				viewLayout.addView(addWindView());
+			}
+		});
 		hengshi_main_layout.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				viewLayout.setVisibility(View.VISIBLE);
+				viewLayout.removeAllViews();
+				viewLayout.addView(addHengshiView());
+			}
+		});
+		
+		txt_hengshi.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -195,6 +239,17 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				viewLayout.removeAllViews();
 				viewLayout.addView(addFilterTimeView(mEairInfo.filterTime));
 
+			}
+		});
+		
+		txt_lvwang.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				viewLayout.setVisibility(View.VISIBLE);
+				viewLayout.removeAllViews();
+				viewLayout.addView(addFilterTimeView(mEairInfo.filterTime));
 			}
 		});
 		viewLayout.setOnClickListener(new OnClickListener() {
@@ -229,14 +284,14 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		mEairController = EairControler.getInstance(this);
 		mNetworkManager = NetWorkManager.getInstance(this);
 		mNetworkManager.setDeviceStatusChangeListener(this);
-		
-		operatingAnim= AnimationUtils.loadAnimation(this, R.anim.air_speed_rotate);  
-		LinearInterpolator lin = new LinearInterpolator();  
+
+		operatingAnim = AnimationUtils.loadAnimation(this, R.anim.air_speed_rotate);
+		LinearInterpolator lin = new LinearInterpolator();
 		operatingAnim.setInterpolator(lin);
-		
-	
+
 	}
-	Animation operatingAnim;  
+
+	Animation operatingAnim;
 	TextView titleView;
 
 	protected void onResume() {
@@ -330,8 +385,14 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-				wind_out_value.setText("" + seekBar.getProgress());
-				mEairController.airSetWindOutLevel((byte) seekBar.getProgress(), mEairInfo.sn);
+				if (seekBar.getProgress() >= 1) {
+					wind_out_value.setText("" + seekBar.getProgress());
+					mEairController.airSetWindOutLevel((byte) seekBar.getProgress(), mEairInfo.sn);
+				} else {
+					wind_out_value.setText("1");
+					mEairController.airSetWindOutLevel((byte) 1, mEairInfo.sn);
+				}
+
 			}
 
 			@Override
@@ -352,8 +413,15 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-				wind_in_value.setText("" + seekBar.getProgress());
-				mEairController.airSetWindInLevel((byte) seekBar.getProgress(), mEairInfo.sn);
+				if (seekBar.getProgress() >= 1) {
+					wind_in_value.setText("" + seekBar.getProgress());
+					mEairController.airSetWindInLevel((byte) seekBar.getProgress(), mEairInfo.sn);
+
+				} else {
+					wind_in_value.setText("1");
+					mEairController.airSetWindInLevel((byte) 1, mEairInfo.sn);
+
+				}
 
 			}
 
@@ -390,10 +458,17 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	ImageView btn_gongneng;
 	ImageView btn_fengliang;
 	ImageView btn_lvWang;
+
+	TextView txt_mode;
+	TextView txt_func;
+	TextView txt_wind;
+	TextView txt_hengshi;
+	TextView txt_lvwang;
+
 	RelativeLayout viewLayout;
 	Context context;
 	LayoutInflater inflater;
-	
+
 	TextView xinfeng_lever;
 	TextView paifeng_lever;
 	ImageView btn_paifeng_bg;
@@ -404,10 +479,10 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.layout);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		TextView textView = (TextView) view.findViewById(R.id.basen_filter_time_view);
-	
-		ImageView basenLogo=(ImageView) view.findViewById(R.id.lvwang_logo);
-		LinearLayout phoneLayout=(LinearLayout) view.findViewById(R.id.lvwang_phone_layout);
-		LinearLayout emailLayout=(LinearLayout) view.findViewById(R.id.lvwang_email_layout);
+
+		ImageView basenLogo = (ImageView) view.findViewById(R.id.lvwang_logo);
+		LinearLayout phoneLayout = (LinearLayout) view.findViewById(R.id.lvwang_phone_layout);
+		LinearLayout emailLayout = (LinearLayout) view.findViewById(R.id.lvwang_email_layout);
 
 		textView.setText("" + timeValue + "小时");
 		return view;
@@ -420,7 +495,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	ImageView basen_mode_heat_view;
 	ImageView basen_mode_shadu_view;
 	ImageView basen_mode_fulizi_view;
-	
 
 	public View addFuncView() {
 		View view = inflater.inflate(R.layout.basen_function_layout, null);
@@ -452,7 +526,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 
 			}
 		});
-	
+
 		fulizi_Layuot.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -472,7 +546,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	ImageView basen_mode_hengshi_view;
 	ImageView basen_mode_auto_view;
 	ImageView basen_mode_sleep_view;
-	
 
 	public View addModeView() {
 		View view = inflater.inflate(R.layout.basen_mode_layout, null);
@@ -487,8 +560,7 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		basen_mode_hengshi_view = (ImageView) view.findViewById(R.id.basen_mode_hengshi_view);
 		basen_mode_auto_view = (ImageView) view.findViewById(R.id.basen_mode_auto_view);
 		basen_mode_sleep_view = (ImageView) view.findViewById(R.id.basen_mode_sleep_view);
-	
-		
+
 		initEairView();
 
 		manLayuot.setOnClickListener(new OnClickListener() {
@@ -648,30 +720,30 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	}
 
 	private void initEairView() {
-		
+
 		if (mEairInfo == null && !mInRefreshIng)
 			return;
 		if (mEairInfo.air == 0) {// 优
 			lever_img.setText("优");
 			lever_img.setBackgroundResource(R.drawable.lever_you);
 			lever_txt.setTextColor(Color.argb(255, 56, 144, 206));
-			lever_procress.setImageResource(R.drawable.blue_3);
-			
+			lever_procress.setImageResource(R.drawable.blue_full);
+
 		} else if (mEairInfo.air == 1) {// 良
 			lever_img.setText("良");
 			lever_img.setBackgroundResource(R.drawable.lever_liang);
 			lever_txt.setTextColor(Color.argb(255, 0, 155, 76));
-			lever_procress.setImageResource(R.drawable.green_3);
+			lever_procress.setImageResource(R.drawable.green_full);
 		} else if (mEairInfo.air == 2) {// 差
 			lever_img.setText("差");
 			lever_img.setBackgroundResource(R.drawable.lever_cha);
 			lever_txt.setTextColor(Color.argb(255, 255, 243, 78));
-			lever_procress.setImageResource(R.drawable.yellow_3);
+			lever_procress.setImageResource(R.drawable.yellow_full);
 		} else if (mEairInfo.air == 3) {// 污
 			lever_img.setText("污");
 			lever_img.setBackgroundResource(R.drawable.lever_wu);
 			lever_txt.setTextColor(Color.argb(255, 230, 33, 41));
-			lever_procress.setImageResource(R.drawable.red_3);
+			lever_procress.setImageResource(R.drawable.red_full);
 		}
 		// // mEairRunStateText.setText(R.string.room_air);
 		// mRunProgress.setVisibility(View.VISIBLE);
@@ -740,36 +812,38 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		}
 		basen_hengshi_txt.setText("恒湿" + mEairInfo.hengshidu + "%");
 		if (hump_in != null) {
-			if( mEairInfo.indoorHumi==255){
+			if (mEairInfo.indoorHumi == 255) {
 				hump_in.setText("--");
-			}else{
+			} else {
 				hump_in.setText(String.format("%d%%", mEairInfo.indoorHumi));
 			}
-		
+
 		}
 
 		if (hump_out != null) {
-			if( mEairInfo.outdoorHumi==255){
+			if (mEairInfo.outdoorHumi == 255) {
 				hump_out.setText("--");
-			}else{
+			} else {
 				hump_out.setText(String.format("%d%%", mEairInfo.outdoorHumi));
 			}
-		
+
 		}
 
 		if (temp_in != null) {
-			if( mEairInfo.indoorTemp==127){
+			if (mEairInfo.indoorTemp == 127) {
 				temp_in.setText("--");
-			}else{
-				temp_in.setText(String.format("%d%s", mEairInfo.indoorTemp, getResources().getString(R.string.degree_c)));
+			} else {
+				temp_in.setText(
+						String.format("%d%s", mEairInfo.indoorTemp, getResources().getString(R.string.degree_c)));
 			}
 		}
 
 		if (temp_out != null) {
-			if( mEairInfo.outdoorTemp==127){
+			if (mEairInfo.outdoorTemp == 127) {
 				temp_out.setText("--");
-			}else{
-				temp_out.setText(String.format("%d%s", mEairInfo.outdoorTemp, getResources().getString(R.string.degree_c)));
+			} else {
+				temp_out.setText(
+						String.format("%d%s", mEairInfo.outdoorTemp, getResources().getString(R.string.degree_c)));
 			}
 		}
 		if (lever_pm25_value != null) {
@@ -803,7 +877,6 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 				lever_TVOC_value.setText("--");
 			}
 		}
-	
 
 		if (device_time != null) {
 			device_time.setText(String.format("%s%02d:%02d", getResources().getString(R.string.device_time),
@@ -830,52 +903,50 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			// mFilterIconView.setImageResource(R.drawable.info);
 		}
 
-		if(mEairInfo.windIn){
+		if (mEairInfo.windIn) {
 			btn_xinfeng.setVisibility(View.VISIBLE);
 			btn_xinfeng_bg.setImageResource(R.drawable.basen_paifeng_bg);
 			xinfeng_lever.setTextColor(Color.argb(255, 54, 144, 206));
-			if (mEairInfo.speed_XF==0) {
+			if (mEairInfo.speed_XF == 0) {
 				btn_xinfeng.clearAnimation();
 				xinfeng_lever.setText("新风");
-			}else{
-				if(btn_xinfeng.getAnimation()!=null){
+			} else {
+				if (btn_xinfeng.getAnimation() != null) {
 					btn_xinfeng.clearAnimation();
 				}
-				xinfeng_lever.setText("新风 "+mEairInfo.speed_XF);
+				xinfeng_lever.setText("新风 " + mEairInfo.speed_XF);
 				btn_xinfeng.startAnimation(operatingAnim);
 			}
-		}else{
+		} else {
 			btn_xinfeng_bg.setImageResource(R.drawable.basen_xinfeng_gray);
 			btn_xinfeng.clearAnimation();
 			xinfeng_lever.setText("新风");
 			btn_xinfeng.setVisibility(View.INVISIBLE);
 			xinfeng_lever.setTextColor(Color.argb(255, 230, 230, 230));
 		}
-	
-	
-		if(mEairInfo.windOut){
+
+		if (mEairInfo.windOut) {
 			btn_paifeng.setVisibility(View.VISIBLE);
 			btn_paifeng_bg.setImageResource(R.drawable.basen_paiwu_bg);
 			paifeng_lever.setTextColor(Color.argb(255, 54, 144, 206));
 
-			if (mEairInfo.speed_PF==0) {
+			if (mEairInfo.speed_PF == 0) {
 				btn_paifeng.clearAnimation();
 				paifeng_lever.setText("排风 ");
-			}else{
-				if(btn_paifeng.getAnimation()!=null){
+			} else {
+				if (btn_paifeng.getAnimation() != null) {
 					btn_paifeng.clearAnimation();
 				}
-				paifeng_lever.setText("排风 "+mEairInfo.speed_PF);
+				paifeng_lever.setText("排风 " + mEairInfo.speed_PF);
 				btn_paifeng.startAnimation(operatingAnim);
 			}
-		}else{
+		} else {
 			btn_paifeng_bg.setImageResource(R.drawable.basen_paifeng_gray);
 			btn_paifeng.clearAnimation();
 			btn_paifeng.setVisibility(View.INVISIBLE);
 			paifeng_lever.setText("排风 ");
 			paifeng_lever.setTextColor(Color.argb(255, 230, 230, 230));
 		}
-		
 
 	}
 

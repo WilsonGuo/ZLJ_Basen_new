@@ -176,7 +176,7 @@
    <string name="text_o3">去味</string>
       
    <string name="center_name">壁挂新风系统</string>
-   <string name="t2_name">柜式新风系统</string>  	
+   <string name="t2_name">新风系统</string>  	
    <string name="t1_name">中央吊顶系统</string>
    <string name="mode_manual">连续模式</string>  
    <string name="mode_auto">智能模式</string>
@@ -201,7 +201,7 @@
     <string name="network_bad">网络不给力哦!</string> 
     <string name="network_recovery">网络连接已恢复!</string> 
 	<string name="network_lost">网络连接超时!</string> 
-    <string name="goodneight_device">柜式新风系统</string>
+    <string name="goodneight_device">新风系统</string>
 	<string name="device_offline">离线</string>
 	<string name="device_online">在线</string>
 	<string name="this_device_online">该设备未在线!</string>

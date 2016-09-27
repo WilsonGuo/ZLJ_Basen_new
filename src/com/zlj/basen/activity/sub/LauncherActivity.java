@@ -34,7 +34,7 @@ public class LauncherActivity extends BaseActivity {
 		nomalLayout = (LinearLayout) this.findViewById(R.id.nomal_layout);
 		nomalImg = (ImageView) this.findViewById(R.id.nomal_bottom);
 		querAllDevice();
-
+		showBasen();
 		(new Timer()).schedule(
 
 				new TimerTask() {
