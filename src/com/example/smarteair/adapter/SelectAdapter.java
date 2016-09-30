@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.basen.R;
 import com.example.smarteair.data.ScanDevice;
+import com.example.smarteair.net.EairControler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -77,6 +78,16 @@ public class SelectAdapter extends BaseAdapter {
 		viewholder.deviceName.setText(R.string.goodneight_device);
 		viewholder.qrInfo.setText(getItem(position).mac);
 
+		if (getItem(position).deviceType == EairControler.TYPE_T2) {
+			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t2_name));
+		} else if (getItem(position).deviceType == EairControler.TYPE_T1) {
+			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t1_name));
+		} else if (getItem(position).deviceType == EairControler.TYPE_CENTER) {
+			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.center_name));
+		}
+		
+		
+		
 		if (mDeviceList.get(position).checked) {
 			viewholder.check.setImageResource(R.drawable.item_selected);
 		} else {

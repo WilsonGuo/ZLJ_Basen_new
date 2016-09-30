@@ -217,7 +217,11 @@ public class BasenMainActivity extends BaseActivity implements DeviceStatusChang
 					ManageDevice device = mDeviceList.get(i);
 					EairApplaction.mControlDevice = device;
 					device.getEairInfo().workMode = 1;
+					String  name=device.getDeviceName();
+					
 					Intent intent = new Intent();
+					
+					intent.putExtra("name", name);
 					intent.setClass(BasenMainActivity.this, DeviceInfoActivity.class);
 					startActivity(intent);
 				}

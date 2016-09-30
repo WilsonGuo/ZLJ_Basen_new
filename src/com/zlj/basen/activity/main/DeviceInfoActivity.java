@@ -77,12 +77,13 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 	TextView temp_out;
 	TextView hump_out;
 	TextView basen_hengshi_txt;
-
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.basen_device_info_layout);
 		context = this;
+		String name=getIntent().getStringExtra("name");
 		inflater = LayoutInflater.from(context);
 		viewLayout = (RelativeLayout) this.findViewById(R.id.viewLayout);
 		backBtn = (ImageButton) this.findViewById(R.id.backBtn);
@@ -272,15 +273,21 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 		mEairInfo = EairApplaction.mControlDevice.getEairInfo();
 
 		titleView = (TextView) this.findViewById(R.id.title_txt);
-		if (mEairInfo.deviceType == EairControler.TYPE_T2) {
-			titleView.setText("" + context.getResources().getString(R.string.t2_name));
-		} else if (mEairInfo.deviceType == EairControler.TYPE_T1) {
-			titleView.setText("" + context.getResources().getString(R.string.t1_name));
-
-		} else if (mEairInfo.deviceType == EairControler.TYPE_CENTER) {
-			titleView.setText("" + context.getResources().getString(R.string.center_name));
-
+		if(name==null||name.equals("")||name.equals("null")){
+			if (mEairInfo.deviceType == EairControler.TYPE_T2) {
+				titleView.setText("" + context.getResources().getString(R.string.t2_name));
+			} else if (mEairInfo.deviceType == EairControler.TYPE_T1) {
+				titleView.setText("" + context.getResources().getString(R.string.t1_name));
+			} else if (mEairInfo.deviceType == EairControler.TYPE_CENTER) {
+				titleView.setText("" + context.getResources().getString(R.string.center_name));
+			}
+		}else{
+			titleView.setText(name);
 		}
+		
+		
+		
+
 		mEairController = EairControler.getInstance(this);
 		mNetworkManager = NetWorkManager.getInstance(this);
 		mNetworkManager.setDeviceStatusChangeListener(this);

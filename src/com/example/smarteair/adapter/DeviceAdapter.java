@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.smarteair.EairApplaction;
 import com.example.basen.R;
 import com.example.smarteair.data.ManageDevice;
+import com.example.smarteair.net.EairControler;
 import com.example.smarteair.net.NetWorkManager;
 import com.example.smarteair.view.OnSingleClickListener;
 import com.zlj.basen.activity.sub.EditDeviceInfoActivity;
@@ -101,7 +102,13 @@ public class DeviceAdapter extends BaseAdapter
 		else
 		{
 			viewholder.deviceName.setText(R.string.goodneight_device);
-			
+			if (md.getDeviceType() == EairControler.TYPE_T2) {
+				viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t2_name));
+			} else if (md.getDeviceType() == EairControler.TYPE_T1) {
+				viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t1_name));
+			} else if (md.getDeviceType() == EairControler.TYPE_CENTER) {
+				viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.center_name));
+			}
 		}
 
 		if(md != null)
