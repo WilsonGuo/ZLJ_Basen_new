@@ -11,18 +11,21 @@
         android:layout_width="fill_parent"
         android:layout_height="40.0dip"
         android:layout_gravity="top"
-        android:layout_marginTop="2dip" >
+        android:layout_marginTop="2dip"
+        android:visibility="gone" >
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_open"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/open_selector"
-        android:gravity="center"
-        android:paddingTop="50.0dip"
-        android:textColor="@color/color_standby"
-        android:textSize="16.0sp" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btn_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/open_selector" 
+            />
+    </RelativeLayout>
 
 </FrameLayout>

@@ -3,248 +3,223 @@ package com.example.smarteair.net;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.LightingColorFilter;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
+import android.util.Log;
 
-public class WifiAdmin 
-{   
-    // ¶¨ÒåWifiManager¶ÔÏó    
-    private WifiManager mWifiManager;   
-    // ¶¨ÒåWifiInfo¶ÔÏó    
-    private WifiInfo mWifiInfo;   
-    // É¨Ãè³öµÄÍøÂçÁ¬½ÓÁĞ±í    
- //   private List<ScanResult> mWifiList;   
-    // ÍøÂçÁ¬½ÓÁĞ±í    
- //   private List<WifiConfiguration> mWifiConfiguration;   
-    // ¶¨ÒåÒ»¸öWifiLock    
-    WifiLock mWifiLock;   
-    private static WifiAdmin singleton;
-  
-   
-	 public static WifiAdmin getInstance(Context context)
-	 {
-		 if(singleton == null)
-		 {
-			 singleton = new WifiAdmin(context);
-		 }
+public class WifiAdmin {
+	// ï¿½ï¿½ï¿½ï¿½WifiManagerï¿½ï¿½ï¿½ï¿½
+	private WifiManager mWifiManager;
+	// ï¿½ï¿½ï¿½ï¿½WifiInfoï¿½ï¿½ï¿½ï¿½
+	private WifiInfo mWifiInfo;
+	// É¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
+	// private List<ScanResult> mWifiList;
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
+	// private List<WifiConfiguration> mWifiConfiguration;
+	// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½WifiLock
+	WifiLock mWifiLock;
+	private static WifiAdmin singleton;
 
-		 return singleton;
-	 }
-	 
-    // ¹¹ÔìÆ÷    
-    private WifiAdmin(Context context) {   
-        // È¡µÃWifiManager¶ÔÏó    
-        mWifiManager = (WifiManager) context   
-                .getSystemService(Context.WIFI_SERVICE);   
-        // È¡µÃWifiInfo¶ÔÏó    
-        mWifiInfo = mWifiManager.getConnectionInfo();   
-    }   
-   
-    // ´ò¿ªWIFI    
-    public void openWifi() {   
-        if (!mWifiManager.isWifiEnabled()) {   
-            mWifiManager.setWifiEnabled(true);   
-        }   
-    }   
-   
-    // ¹Ø±ÕWIFI    
-    public void closeWifi() {   
-        if (mWifiManager.isWifiEnabled()) {   
-            mWifiManager.setWifiEnabled(false);   
-        }   
-    }   
-   
-    // ¼ì²éµ±Ç°WIFI×´Ì¬    
-    public int checkState() {   
-        return mWifiManager.getWifiState();   
-    }   
-   
-    // Ëø¶¨WifiLock    
-    public void acquireWifiLock() {   
-        mWifiLock.acquire();   
-    }   
-   
-    // ½âËøWifiLock    
-    public void releaseWifiLock() {   
-        // ÅĞ¶ÏÊ±ºòËø¶¨    
-        if (mWifiLock.isHeld()) {   
-            mWifiLock.acquire();   
-        }   
-    }   
-   
-    // ´´½¨Ò»¸öWifiLock    
-    public void creatWifiLock() {   
-        mWifiLock = mWifiManager.createWifiLock("Test");   
-    }   
-   
-    public void removewifi(String SSID) 
-    {
-    	WifiConfiguration tempConfig = this.IsExsits(SSID);             
-    
-        if(tempConfig != null) {    
-            mWifiManager.removeNetwork(tempConfig.networkId);    
-        }  
-    }
-    
-    /*
-    // µÃµ½ÅäÖÃºÃµÄÍøÂç    
-    public List<WifiConfiguration> getConfiguration() {   
-        return mWifiConfiguration;   
-    }   
-   
-    // Ö¸¶¨ÅäÖÃºÃµÄÍøÂç½øĞĞÁ¬½Ó    
-    public void connectConfiguration(int index) {   
-        // Ë÷Òı´óÓÚÅäÖÃºÃµÄÍøÂçË÷Òı·µ»Ø    
-        if (index > mWifiConfiguration.size()) {   
-            return;   
-        }   
-        // Á¬½ÓÅäÖÃºÃµÄÖ¸¶¨IDµÄÍøÂç    
-        mWifiManager.enableNetwork(mWifiConfiguration.get(index).networkId,   
-                true);   
-    }   
-   
-    public void startScan() {   
-        mWifiManager.startScan();   
-        // µÃµ½É¨Ãè½á¹û    
-        mWifiList = mWifiManager.getScanResults();   
-        // µÃµ½ÅäÖÃºÃµÄÍøÂçÁ¬½Ó    
-        mWifiConfiguration = mWifiManager.getConfiguredNetworks();   
-    }   
-   
-    // µÃµ½ÍøÂçÁĞ±í    
-    public List<ScanResult> getWifiList() {   
-        return mWifiList;   
-    }   
-   
-    // ²é¿´É¨Ãè½á¹û    
-    public StringBuilder lookUpScan() {   
-        StringBuilder stringBuilder = new StringBuilder();   
-        for (int i = 0; i < mWifiList.size(); i++) {   
-            stringBuilder   
-                    .append("Index_" + new Integer(i + 1).toString() + ":");   
-            // ½«ScanResultĞÅÏ¢×ª»»³ÉÒ»¸ö×Ö·û´®°ü    
-            // ÆäÖĞ°Ñ°üÀ¨£ºBSSID¡¢SSID¡¢capabilities¡¢frequency¡¢level    
-            stringBuilder.append((mWifiList.get(i)).toString());   
-            stringBuilder.append("/n");   
-        }   
-        return stringBuilder;   
-    }  */
- 
-    // µÃµ½MACµØÖ·    
-    public String getMacAddress() {   
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getMacAddress();   
-    }   
-   
-    // µÃµ½½ÓÈëµãµÄBSSID    
-    public String getBSSID() {   
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getBSSID();   
-    }   
-   
-    // µÃµ½IPµØÖ·    
-    public int getIPAddress() {   
-        return (mWifiInfo == null) ? 0 : mWifiInfo.getIpAddress();   
-    }   
-   
-    // µÃµ½Á¬½ÓµÄID    
-    public int getNetworkId() {   
-        return (mWifiInfo == null) ? 0 : mWifiInfo.getNetworkId();   
-    }   
-   
-    // µÃµ½WifiInfoµÄËùÓĞĞÅÏ¢°ü    
-    public String getWifiInfo() {   
-        return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();   
-    }   
+	public static WifiAdmin getInstance(Context context) {
+		if (singleton == null) {
+			singleton = new WifiAdmin(context);
+		}
 
-   public static boolean isWifiConnect(Context context)
-    {
-        return ((ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE)).getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
-    }
-   
-    // Ìí¼ÓÒ»¸öÍøÂç²¢Á¬½Ó    
-    public void addNetwork(WifiConfiguration wcg) {   
-     int wcgID = mWifiManager.addNetwork(wcg);   
-     boolean b =  mWifiManager.enableNetwork(wcgID, true);   
-     System.out.println("a--" + wcgID);  
-     System.out.println("b--" + b);  
-    }   
-   
-    // ¶Ï¿ªÖ¸¶¨IDµÄÍøÂç    
-    public void disconnectWifi(int netId) {   
-        mWifiManager.disableNetwork(netId);   
-        mWifiManager.disconnect();   
-    }   
-   
-//È»ºóÊÇÒ»¸öÊµ¼ÊÓ¦ÓÃ·½·¨£¬Ö»ÑéÖ¤¹ıÃ»ÓĞÃÜÂëµÄÇé¿ö£º  
-   
-    public WifiConfiguration CreateWifiInfo(String SSID, String Password, int Type)   
-    {   
-          WifiConfiguration config = new WifiConfiguration();     
-           config.allowedAuthAlgorithms.clear();   
-           config.allowedGroupCiphers.clear();   
-           config.allowedKeyManagement.clear();   
-           config.allowedPairwiseCiphers.clear();   
-           config.allowedProtocols.clear();   
-           config.SSID = "\"" + SSID + "\"";     
-            
-          WifiConfiguration tempConfig = this.IsExsits(SSID);             
-          if(tempConfig != null) {    
-              mWifiManager.removeNetwork(tempConfig.networkId);    
-          }  
-            
-          if(Type == 1) //WIFICIPHER_NOPASS  
-          {   
-               config.hiddenSSID = true;   
-               config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);   
-              // config.wepTxKeyIndex = 0;   
-          }   
-          if(Type == 2) //WIFICIPHER_WEP  
-          {   
-              config.hiddenSSID = true;  
-              config.wepKeys[0]= "\""+Password+"\"";   
-              config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.SHARED);   
-              config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);   
-              config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);   
-              config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);   
-              config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);   
-              config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);   
-              config.wepTxKeyIndex = 0;   
-          }   
-          if(Type == 3) //WIFICIPHER_WPA  
-          {   
-          config.preSharedKey = "\""+Password+"\"";   
-          config.hiddenSSID = true;     
-          config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);     
-          config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);                           
-          config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);                           
-          config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);                      
-          //config.allowedProtocols.set(WifiConfiguration.Protocol.WPA);    
-          config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);  
-          config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);  
-          config.status = WifiConfiguration.Status.ENABLED;     
-          }  
-           return config;   
-    }   
-      
-    private WifiConfiguration IsExsits(String SSID)    
-    {    
-        List<WifiConfiguration> existingConfigs = mWifiManager.getConfiguredNetworks();  
-        
-        if(existingConfigs == null)
-        {
-        	return null;
-        }
-        
-        for (WifiConfiguration existingConfig : existingConfigs)     
-           {    
-             if (existingConfig.SSID.equals("\""+SSID+"\""))    
-             {    
-                 return existingConfig;    
-             }    
-           }    
-        return null;     
-    }  
-    
-}   
+		return singleton;
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private WifiAdmin(Context context) {
+		// È¡ï¿½ï¿½WifiManagerï¿½ï¿½ï¿½ï¿½
+		mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		// È¡ï¿½ï¿½WifiInfoï¿½ï¿½ï¿½ï¿½
+		mWifiInfo = mWifiManager.getConnectionInfo();
+	}
+
+	// ï¿½ï¿½WIFI
+	public void openWifi() {
+		if (!mWifiManager.isWifiEnabled()) {
+			mWifiManager.setWifiEnabled(true);
+		}
+	}
+
+	// ï¿½Ø±ï¿½WIFI
+	public void closeWifi() {
+		if (mWifiManager.isWifiEnabled()) {
+			mWifiManager.setWifiEnabled(false);
+		}
+	}
+
+	// ï¿½ï¿½éµ±Ç°WIFI×´Ì¬
+	public int checkState() {
+		return mWifiManager.getWifiState();
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½WifiLock
+	public void acquireWifiLock() {
+		mWifiLock.acquire();
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½WifiLock
+	public void releaseWifiLock() {
+		// ï¿½Ğ¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if (mWifiLock.isHeld()) {
+			mWifiLock.acquire();
+		}
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½WifiLock
+	public void creatWifiLock() {
+		mWifiLock = mWifiManager.createWifiLock("Test");
+	}
+
+	public void removewifi(String SSID) {
+		WifiConfiguration tempConfig = this.IsExsits(SSID);
+		if (tempConfig != null) {
+			mWifiManager.removeNetwork(tempConfig.networkId);
+			Log.e("TAG", ">>>>>>>>>>>>>>>>>>>ç§»é™¤æˆåŠŸ SSIDï¼š" + SSID);
+		} else {
+			Log.e("TAG", ">>>>>>>>>>>>>>>>>>>tempConfig==null ç§»é™¤SSIDï¼š" + SSID);
+
+		}
+	}
+
+	/*
+	 * // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÃºÃµï¿½ï¿½ï¿½ï¿½ï¿½ public List<WifiConfiguration> getConfiguration() {
+	 * return mWifiConfiguration; }
+	 * 
+	 * // Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ÃºÃµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ public void connectConfiguration(int index) { //
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃºÃµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ if (index > mWifiConfiguration.size()) {
+	 * return; } // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃºÃµï¿½Ö¸ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * mWifiManager.enableNetwork(mWifiConfiguration.get(index).networkId,
+	 * true); }
+	 * 
+	 * public void startScan() { mWifiManager.startScan(); // ï¿½Ãµï¿½É¨ï¿½ï¿½ï¿½ï¿½ mWifiList
+	 * = mWifiManager.getScanResults(); // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÃºÃµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ mWifiConfiguration
+	 * = mWifiManager.getConfiguredNetworks(); }
+	 * 
+	 * // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½ public List<ScanResult> getWifiList() { return mWifiList; }
+	 * 
+	 * // ï¿½é¿´É¨ï¿½ï¿½ï¿½ï¿½ public StringBuilder lookUpScan() { StringBuilder
+	 * stringBuilder = new StringBuilder(); for (int i = 0; i <
+	 * mWifiList.size(); i++) { stringBuilder .append("Index_" + new Integer(i +
+	 * 1).toString() + ":"); // ï¿½ï¿½ScanResultï¿½ï¿½Ï¢×ªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ //
+	 * ï¿½ï¿½ï¿½Ğ°Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½BSSIDï¿½ï¿½SSIDï¿½ï¿½capabilitiesï¿½ï¿½frequencyï¿½ï¿½level
+	 * stringBuilder.append((mWifiList.get(i)).toString());
+	 * stringBuilder.append("/n"); } return stringBuilder; }
+	 */
+
+	// ï¿½Ãµï¿½MACï¿½ï¿½Ö·
+	public String getMacAddress() {
+		return (mWifiInfo == null) ? "NULL" : mWifiInfo.getMacAddress();
+	}
+
+	// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BSSID
+	public String getBSSID() {
+		return (mWifiInfo == null) ? "NULL" : mWifiInfo.getBSSID();
+	}
+
+	// ï¿½Ãµï¿½IPï¿½ï¿½Ö·
+	public int getIPAddress() {
+		return (mWifiInfo == null) ? 0 : mWifiInfo.getIpAddress();
+	}
+
+	// ï¿½Ãµï¿½ï¿½ï¿½ï¿½Óµï¿½ID
+	public int getNetworkId() {
+		return (mWifiInfo == null) ? 0 : mWifiInfo.getNetworkId();
+	}
+
+	// ï¿½Ãµï¿½WifiInfoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
+	public String getWifiInfo() {
+		return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();
+	}
+
+	public static boolean isWifiConnect(Context context) {
+		return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE))
+				.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
+	}
+
+	public void addNetwork(WifiConfiguration wcg) {
+		Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>addNetwork<<<<<<<<<<");
+		int wcgID = mWifiManager.addNetwork(wcg);
+		boolean b = mWifiManager.enableNetwork(wcgID, true);
+		Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>wcgID=" + wcgID + "  b=" + b);
+
+	}
+
+	public void disconnectWifi(int netId) {
+		mWifiManager.disableNetwork(netId);
+		mWifiManager.disconnect();
+	}
+
+	// È»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Êµï¿½ï¿½Ó¦ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ö¤ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+	public WifiConfiguration CreateWifiInfo(String SSID, String Password, int Type) {
+		WifiConfiguration config = new WifiConfiguration();
+		config.allowedAuthAlgorithms.clear();
+		config.allowedGroupCiphers.clear();
+		config.allowedKeyManagement.clear();
+		config.allowedPairwiseCiphers.clear();
+		config.allowedProtocols.clear();
+		config.SSID = "\"" + SSID + "\"";
+
+		WifiConfiguration tempConfig = this.IsExsits(SSID);
+		if (tempConfig != null) {
+			Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>ç§»é™¤å·²ç»å­˜åœ¨çš„tempConfig.networkId="+tempConfig.networkId);
+			mWifiManager.removeNetwork(tempConfig.networkId);
+		}
+
+		if (Type == 1) // WIFICIPHER_NOPASS
+		{
+			config.hiddenSSID = true;
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+			// config.wepTxKeyIndex = 0;
+		}
+		if (Type == 2) // WIFICIPHER_WEP
+		{
+			config.hiddenSSID = true;
+			config.wepKeys[0] = "\"" + Password + "\"";
+			config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.SHARED);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+			config.wepTxKeyIndex = 0;
+		}
+		if (Type == 3) // WIFICIPHER_WPA
+		{
+			config.preSharedKey = "\"" + Password + "\"";
+			config.hiddenSSID = true;
+			config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+			// config.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+			config.status = WifiConfiguration.Status.ENABLED;
+		}
+		return config;
+	}
+
+	private WifiConfiguration IsExsits(String SSID) {
+		List<WifiConfiguration> existingConfigs = mWifiManager.getConfiguredNetworks();
+
+		if (existingConfigs == null) {
+			return null;
+		}
+
+		for (WifiConfiguration existingConfig : existingConfigs) {
+			if (existingConfig.SSID.equals("\"" + SSID + "\"")) {
+				return existingConfig;
+			}
+		}
+		return null;
+	}
+
+}

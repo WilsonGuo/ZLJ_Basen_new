@@ -58,7 +58,7 @@ public class BaseActivity extends FragmentActivity
     protected void onCreate(Bundle bundle)
     {
         mApplication = (EairApplaction)getApplication();
-        mApplication.mActivityList.add(this);
+//        mApplication.mActivityList.add(this);
         super.onCreate(bundle);
     }
 
@@ -69,7 +69,7 @@ public class BaseActivity extends FragmentActivity
             OpenHelperManager.releaseHelper();
             mHelper = null;
         }
-        mApplication.mActivityList.remove(this);
+//        mApplication.mActivityList.remove(this);
         
         super.onDestroy();
     }

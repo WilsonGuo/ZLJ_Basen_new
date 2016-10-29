@@ -231,18 +231,23 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 
 		if (mQueryDevice.size() > 0) {
 
-			ScanDevice sd = mQueryDevice.get(0);
-			EairApplaction.mNetWorkManager.JniActiveDevice(sd.id);
-			mProcDevice = sd;
-			mEairController.airQueryState(mProcDevice.id);
+		
+			if(EairApplaction.mNetWorkManager!=null){
+				ScanDevice sd = mQueryDevice.get(0);
+				EairApplaction.mNetWorkManager.JniActiveDevice(sd.id);
+				mProcDevice = sd;
+				mEairController.airQueryState(mProcDevice.id);
 
-			mQueryDevice.remove(0);
+				mQueryDevice.remove(0);
 
+			}
+		
 		} else {
 			back();
 		}
 
 	}
+
 
 	private void SaveConfig() {
 		ScanDevice di = mCheckedDevice.get(0);
@@ -409,6 +414,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 
 		} else if (type == Defines.DEVICE_STATUS_CHANGE_CALLBACK_TYPE_DATA) {
 
+			Log.e("TAG", ">>>>>>>>DEVICE_STATUS_CHANGE_CALLBACK_TYPE_DATA");
 			if (mProcDevice == null || datainfo == null) {
 				return;
 			}
@@ -455,9 +461,10 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 					EairApplaction.mNetWorkManager.JniActiveDevice(eairinfo.sn);
 				}
 			}
-
 			if (mQueryDevice.size() > 0) {
 				queryProc();
+				Log.e("TAG", ">>>>>>>>queryProc<<<<<<<<<<<<");
+
 			} else {
 				dismissProgessDialog();
 				back();

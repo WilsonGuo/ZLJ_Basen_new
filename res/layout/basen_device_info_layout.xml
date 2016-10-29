@@ -70,7 +70,7 @@
             android:layout_marginRight="0dp"
             android:background="@drawable/color_bg"
             android:padding="6dp"
-            android:src="@drawable/red_3" />
+            android:src="@drawable/red_full" />
 
         <LinearLayout
             android:id="@+id/lever_content_layout"

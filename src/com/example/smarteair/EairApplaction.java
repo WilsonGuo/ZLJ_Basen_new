@@ -28,7 +28,7 @@ public class EairApplaction extends Application {
 	public static ManageDevice mEditDevice;
     public static long mTimeDiff = 0L;
 	
-    public List<Activity> mActivityList;
+//    public List<Activity> mActivityList;
 
     private ManageDeviceDao mManageDeviceDao;
     public String mNetIP="0.0.0.0";
@@ -99,7 +99,7 @@ public class EairApplaction extends Application {
 
 	public EairApplaction() 
 	{
-		mActivityList = new ArrayList<Activity>();
+//		mActivityList = new ArrayList<Activity>();
 	}
 
 	private int getStatusBarHeight() 
@@ -143,32 +143,32 @@ public class EairApplaction extends Application {
 	}
 
 
-	public void clearActivityList() 
-	{
-		if(mActivityList == null)
-		{
-			return;
-			
-		}
-		
-        int i = 0;
-        do
-        {
-            if (i >= mActivityList.size())
-            {
-                mActivityList.clear();
-                return;
-            }
-            
-            ((Activity)mActivityList.get(i)).finish();
-            
-            i++;
-        } while (true);
-	}
+//	public void clearActivityList() 
+//	{
+//		if(mActivityList == null)
+//		{
+//			return;
+//			
+//		}
+//		
+//        int i = 0;
+//        do
+//        {
+//            if (i >= mActivityList.size())
+//            {
+//                mActivityList.clear();
+//                return;
+//            }
+//            
+//            ((Activity)mActivityList.get(i)).finish();
+//            
+//            i++;
+//        } while (true);
+//	}
 
 	public void finish() 
 	{
-		clearActivityList();
+//		clearActivityList();
         System.gc();
 	}
 
@@ -221,7 +221,7 @@ public class EairApplaction extends Application {
 				
 							public void run() 
 							{
-								finish();
+								
 								System.exit(0);
 							}
 				

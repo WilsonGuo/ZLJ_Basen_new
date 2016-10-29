@@ -34,7 +34,7 @@ public class UserNoteActivity extends Activity {
 		}
 
 		if (getString(R.string.locale).equals("zh")) {
-			webView.loadUrl("file:///android_asset/guide_cn.html");
+			webView.loadUrl("file:///android_asset/guide_cn.htm");
 			return;
 		} else {
 			webView.loadUrl("file:///android_asset/guide.html");

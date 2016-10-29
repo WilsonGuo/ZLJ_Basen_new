@@ -176,8 +176,8 @@
    <string name="text_o3">去味</string>
       
    <string name="center_name">壁挂新风系统</string>
-   <string name="t2_name">柜式新风系统</string>  	
-   <string name="t1_name">中央吊顶系统</string>
+   <string name="t2_name">立式新风系统</string>  	
+   <string name="t1_name">中央新风系统</string>
    <string name="mode_manual">连续模式</string>  
    <string name="mode_auto">智能模式</string>
    <string name="mode_winter">冬天模式</string>

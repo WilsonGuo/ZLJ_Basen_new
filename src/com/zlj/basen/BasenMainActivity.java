@@ -258,15 +258,18 @@ public class BasenMainActivity extends BaseActivity implements DeviceStatusChang
 			Toast.makeText(this, R.string.double_click_exit, 0).show();
 			if (mExitTimer == null) {
 				mExitTimer = new Timer();
+				mExitTimer.schedule(new TimerTask() {
+					public void run() {
+						mCanExit = false;
+					}
+				}, 1000L);
 			} else {
 				mExitTimer.cancel();
 			}
 
-			mExitTimer.schedule(new TimerTask() {
-				public void run() {
-					mCanExit = false;
-				}
-			}, 1000L);
+			
+			
+			
 			return;
 		}
 

@@ -751,6 +751,17 @@ public class DeviceInfoActivity extends BaseActivity implements DeviceStatusChan
 			lever_img.setBackgroundResource(R.drawable.lever_wu);
 			lever_txt.setTextColor(Color.argb(255, 230, 33, 41));
 			lever_procress.setImageResource(R.drawable.red_full);
+		}else if (mEairInfo.air == 4) {//等待
+			lever_img.setText("");
+			lever_img.setBackgroundResource(R.drawable.lever_wait);
+			lever_txt.setTextColor(Color.argb(255, 230, 230, 230));
+			lever_procress.setImageResource(R.drawable.wait_full);
+		}else if (mEairInfo.air == 5) {//错误
+			lever_img.setText("--");
+			lever_img.setBackgroundResource(R.drawable.lever_wait);
+			lever_txt.setTextColor(Color.argb(255, 230, 230, 230));
+			lever_procress.setImageResource(R.drawable.wait_full);
+			
 		}
 		// // mEairRunStateText.setText(R.string.room_air);
 		// mRunProgress.setVisibility(View.VISIBLE);

@@ -429,8 +429,10 @@ public class NetWorkManager {
 						mWifiAdmin.addNetwork(mWifiAdmin.CreateWifiInfo("WIFI-CFG", "", 1));
                         Log.e("TAG", ">>>>>>>>>>>>>>>>>>>strPassWord="+mSSID);
                         Log.e("TAG", ">>>>>>>>>>>>>>>>>>>strPassWord="+strPassWord);
+                        
+                        
 						int dev_sn = JniApConfig(ssid, password, add_wifi_flg);
-
+						
 //						mWifiAdmin.closeWifi();
 //						mWifiAdmin.removewifi("WIFI-CFG");
 //						mWifiAdmin.openWifi();

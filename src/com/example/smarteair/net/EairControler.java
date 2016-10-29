@@ -536,10 +536,12 @@ public class EairControler {
 
 		Log.e("TAG", "**********************************parseInfo***********************");
 
+		
+		
 		for (int i = 0; i < stateData.length; i++) {
 			int v = stateData[i] & 0xFF;
 			String hv = Integer.toHexString(v);
-			//Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stateData:" + i + "=" + hv);
+			Log.e("TAG", ">>>>>>>>>>>>>stateData:" + i + "=" + hv);
 		}
 		eairInfo.logoIndex=stateData[STATE_DATA_INDEX_LOGO_TYPE];
 		//Log.e("TAG", "***************************************logoIndex:" + eairInfo.logoIndex);
@@ -549,13 +551,13 @@ public class EairControler {
 		byte setBit_L = stateData[STATE_DATA_INDEX_FUCTION_SET_BIT_L];
 		String stringH = byteToBit(setBit_H);
 		String stringL = byteToBit(setBit_L);
-		Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
+		//Log.e("TAG", "**********************************stringH=" + stringH + "  " + stringL);
 
 		byte bit_H = stateData[STATE_DATA_INDEX_FUCTION_BIT_H];
 		byte bit_L = stateData[STATE_DATA_INDEX_FUCTION_BIT_L];
 		String striH = byteToBit(bit_H);
 		String striL = byteToBit(bit_L);
-		Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
+		//Log.e("TAG", "**********************************striH=" + striH + "  " + striH);
 
 		byte[] setBitsH = getBooleanArray(setBit_H);
 		byte[] setBitsL = getBooleanArray(setBit_L);
@@ -653,6 +655,7 @@ public class EairControler {
 		eairInfo.fixHumi = getDataByIndex(STATE_DATA_INDEX_FIX_HUMI, stateData, 1);
 
 		eairInfo.air = getDataByIndex(STATE_DATA_INDEX_AIR_LEVER, stateData, 1);
+        Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>eairInfo.air ="+eairInfo.air );
 
 		eairInfo.workMode = getDataByIndex(STATE_DATA_INDEX_WORK_MODE, stateData, 1);
 
@@ -660,7 +663,7 @@ public class EairControler {
 		eairInfo.windOutLevel = getDataByIndex(STATE_DATA_INDEX_WIND_OUT, stateData, 1);
 
 		eairInfo.deviceType = getDataByIndex(STATE_DATA_INDEX_DEVICE_TYPE, stateData, 1);
-
+        Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>>>>>eairInfo.deviceType="+eairInfo.deviceType);
 		if (eairInfo.set_dingshi) {// 以星期定时方式 每天可以独立设置
 			eairInfo.timerStartMin_Mon = getDataByIndex(STATE_DATA_INDEX_KAI_MIN_MON, stateData, 1);
 			eairInfo.timerStartHour_Mon = getDataByIndex(STATE_DATA_INDEX_KAI_HOUR_MON, stateData, 1);

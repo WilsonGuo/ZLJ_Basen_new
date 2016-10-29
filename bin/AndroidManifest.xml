@@ -17,7 +17,6 @@
          <activity
             android:name="com.zlj.basen.BasenMainActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
@@ -67,28 +66,24 @@
         <activity
             android:name="com.example.smarteair.activity.DeviceHomePageActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.example.smarteair.activity.DeviceHomePageActivity_1"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.example.smarteair.activity.T1DeviceHomePageActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.example.smarteair.activity.CenterDeviceHomePageActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
@@ -119,7 +114,6 @@
         <activity
             android:name="com.zlj.basen.activity.sub.OpenActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
@@ -162,14 +156,12 @@
         <activity
             android:name="com.zlj.basen.activity.sub.EditDeviceInfoActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.example.smarteair.activity.HelloSeekBarActivity"
             android:configChanges="keyboardHidden|navigation|orientation"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="stateHidden" />
