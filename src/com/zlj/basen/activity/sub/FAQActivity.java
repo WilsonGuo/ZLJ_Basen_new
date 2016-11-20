@@ -34,7 +34,7 @@ public class FAQActivity extends Activity {
 		}
 
 		if (getString(R.string.locale).equals("zh")) {
-			webView.loadUrl("file:///android_asset/faq_cn.html");
+			webView.loadUrl("file:///android_asset/faq_cn.htm");
 			return;
 		} else {
 			webView.loadUrl("file:///android_asset/faq.html");

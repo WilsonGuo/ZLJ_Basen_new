@@ -15,6 +15,7 @@ public class ScanDevice
     public short subDevice;
     public boolean checked;
     public EairInfo eairInfo;
+    public boolean isNew=true;
 	 
     public ScanDevice()
     {

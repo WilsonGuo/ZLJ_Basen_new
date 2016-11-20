@@ -35,12 +35,13 @@ public class SelectAdapter extends BaseAdapter {
 	private List<ScanDevice> mDeviceList;
 	private List<CheckBox> mCheckBoxs;
 	private LayoutInflater mInflater;
-
-	public SelectAdapter(Context context, List<ScanDevice> list) {
+	boolean showNew;
+	public SelectAdapter(Context context, List<ScanDevice> list,boolean showNew) {
 		mContext = context;
 		mInflater = LayoutInflater.from(context);
 		mDeviceList = list;
 		mCheckBoxs = new ArrayList<CheckBox>();
+		this.showNew=showNew;
 	}
 
 	public int getCount() {
@@ -78,14 +79,23 @@ public class SelectAdapter extends BaseAdapter {
 		viewholder.deviceName.setText(R.string.goodneight_device);
 		viewholder.qrInfo.setText(getItem(position).mac);
 
-		if (getItem(position).deviceType == EairControler.TYPE_T2) {
-			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t2_name));
-		} else if (getItem(position).deviceType == EairControler.TYPE_T1) {
-			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t1_name));
-		} else if (getItem(position).deviceType == EairControler.TYPE_CENTER) {
-			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.center_name));
+		if(showNew){
+			viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.default_name));
+		}else{
+			if(getItem(position).isNew){
+				viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.default_name));
+			}else{
+				if (getItem(position).deviceType == EairControler.TYPE_T2) {
+					viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t2_name));
+				} else if (getItem(position).deviceType == EairControler.TYPE_T1) {
+					viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.t1_name));
+				} else if (getItem(position).deviceType == EairControler.TYPE_CENTER) {
+					viewholder.deviceName.setText("" + mContext.getResources().getString(R.string.center_name));
+				}
+			}
+			
 		}
-		
+	
 		
 		
 		if (mDeviceList.get(position).checked) {

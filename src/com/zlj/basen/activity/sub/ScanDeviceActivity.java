@@ -275,7 +275,7 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 			} else {
 				mNoDevice.setVisibility(View.VISIBLE);
 			}
-			mSimpleAdapter = new SelectAdapter(this, mGotDevice);
+			mSimpleAdapter = new SelectAdapter(this, mGotDevice,showNew);
 		} else {
 			if (mGotDevice.size() > 0 || EairApplaction.allDeviceList.size() > 0) {
 				mNoDevice.setVisibility(View.GONE);
@@ -292,12 +292,13 @@ public class ScanDeviceActivity extends BaseActivity implements AddDeviceCallBac
 					device.mac = EairApplaction.allDeviceList.get(i).getDeviceMac();
 					device.deviceName = EairApplaction.allDeviceList.get(i).getDeviceName();
 					device.deviceType = EairApplaction.allDeviceList.get(i).getDeviceType();
+					device.isNew=false;
 					mAllDevice.add(device);
 					Log.e("TAG", ">>>>>>>>>>>>>>>>>>>>>>>	mAllDevice.add(device):" + device.id);
 
 				}
 			}
-			mSimpleAdapter = new SelectAdapter(this, mAllDevice);
+			mSimpleAdapter = new SelectAdapter(this, mAllDevice,showNew);
 
 		}
 		mDeviceListView.setAdapter(mSimpleAdapter);
